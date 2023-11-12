@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    class OrksFactoryUnits : IAbstractFactoryUnits
+    class OrcsFactoryUnits : IAbstractFactoryUnits
     {
         public Unit CreateArcher()
         {
@@ -25,7 +25,7 @@ namespace AZZ_LB_3_3
 
         public Unit CreateWarrior()
         {
-            return new OrkLeader();
+            return new OrcLeader();
         }
     }
 }

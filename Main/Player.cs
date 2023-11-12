@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Models.Units.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,8 +77,40 @@ namespace AZZ_LB_3_3
                 case TypeFaction.HUMANS:
                     _unitFactory = new HumansFactoryUnits();
                     break;
-                 //доделать остальные фракции
+                case TypeFaction.ORCS:
+                    _unitFactory = new OrcsFactoryUnits();
+                    break;
+                case TypeFaction.UNDEADS:
+                    _unitFactory = new UndeadsFactoryUnits();
+                    break;
             }
+        }
+
+        public Unit GetUnit(TypeRole role)
+        {
+            //if (role == null) throw new ArgumentNullException("Пустая ссылка не может быть ролью");
+            //if (role is IWarrior) return _unitFactory.CreateWarrior();
+            //if (role is IArcher) return _unitFactory.CreateArcher();
+            //if (role is IMage) return _unitFactory.CreateMage();
+            //if (role is IRider) return _unitFactory.CreateRider();
+
+            //throw new ArgumentNullException("Такой роли не существует");
+
+            switch (role)
+            {
+                case TypeRole.WARRIOR:
+                    return _unitFactory.CreateWarrior();
+                case TypeRole.ARCHER:
+                    return _unitFactory.CreateArcher();
+                case TypeRole.MAGE:
+                    return _unitFactory.CreateMage();
+                case TypeRole.RIDER:
+                    return _unitFactory.CreateRider();
+                default:
+                    break;
+            }
+
+            return null;
         }
 
         public void AddUnit(Unit unit)
