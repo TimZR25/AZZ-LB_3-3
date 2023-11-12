@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace AZZ_LB_3_3
     {
 
         private List<Cell> field;
-        
+
         public int? size { get; }
 
         private static Field instance;
@@ -55,5 +56,16 @@ namespace AZZ_LB_3_3
                 }
             }
         }
+        public void AddModel(IModel model, int x, int y)
+        {
+            for (int i = 0; i < field.Count; i++)
+            {
+                if (field[i].x == x && field[i].y == y)
+                {
+                    if (field[i].GetIsEmpty() == true) field[i].AddModelInCell(model);
+                    else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
+                    break;
+                }
+            }
+        }
     }
-}

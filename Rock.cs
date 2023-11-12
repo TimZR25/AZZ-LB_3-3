@@ -10,7 +10,7 @@ namespace AZZ_LB_3_3
     {
         public string GetSign()
         {
-            return "R";
+            return "Ro";
         }
     }
 }
