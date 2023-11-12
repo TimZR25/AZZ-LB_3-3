@@ -9,8 +9,8 @@ namespace AZZ_LB_3_3
      public class Player
     {
         private string _name;
-        private List<Unit> _squad;
-        private Faction _factionPlayer;
+        private List<Unit> _squadUnits;
+        //private Faction _factionPlayer;
         private int _totalScore;
         private string _groupPlayer;
 
@@ -29,24 +29,24 @@ namespace AZZ_LB_3_3
         {
             get
             {
-                return _squad;
+                return _squadUnits;
             }
             private set
             {
-                _squad = value;
+                _squadUnits = value;
             }
         }
-        public Faction FactionPlayer
-        {
-            get
-            {
-                return _factionPlayer;
-            }
-            private set
-            {
-                _factionPlayer = value;
-            }
-        }
+        //public Faction FactionPlayer
+        //{
+        //    get
+        //    {
+        //        return _factionPlayer;
+        //    }
+        //    private set
+        //    {
+        //        _factionPlayer = value;
+        //    }
+        //}
         public int TotalScore
         {
             get
@@ -70,14 +70,14 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public Player(string name, Faction factionPlayer, int totalScore, string groupPlayer)
-        {
-            Name = name;
-            FactionPlayer = factionPlayer;
-            TotalScore = totalScore;
-            GroupPlayer = groupPlayer;
-            Squad = new();
-        }
+        //public Player(string name, Faction factionPlayer, int totalScore, string groupPlayer)
+        //{
+        //    Name = name;
+        //    FactionPlayer = factionPlayer;
+        //    TotalScore = totalScore;
+        //    GroupPlayer = groupPlayer;
+        //    Squad = new();
+        //}
 
         public void AddUnit(Unit unit)
         {
