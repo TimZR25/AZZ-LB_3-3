@@ -66,10 +66,10 @@ namespace AZZ_LB_3_3
                 }
             }
         }
-        public Cell GetCell(int x, int y)
+        public Cell? GetCell(int x, int y)
         {
-            Cell result = null;
-            if (x > _sizeSide || y > _sizeSide || x < 1 || y < 1) {
+            Cell? result = null;
+            if (x > _sizeSide || y > _sizeSide || x < 0 || y < 0) {
                 throw new ArgumentOutOfRangeException("Некорректные координаты для получения клетки");
             }
 

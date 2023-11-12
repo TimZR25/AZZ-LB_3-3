@@ -20,6 +20,16 @@ namespace AZZ_LB_3_3
             field.AddModel(new Orc(), 1, 1);
 
             field.FieldOut();
+            Console.WriteLine();
+
+            Cell? cell = field.GetCell(1, 1);
+            if(cell?.Model is Orc orche)
+            {
+                if (orche.TryMove(field.GetCell(2, 2)) == false)
+                    Console.WriteLine("Упс клетка занята");
+            }
+
+            field.FieldOut();
         }
     }
 }

@@ -16,19 +16,29 @@ namespace AZZ_LB_3_3
         public IModel? Model { get; private set; }
 
         string sign = "0";
+
         public Cell(int x, int y)
         {
             X = x;
             Y = y;
         }
+
         public override string ToString()
         {
             return sign + " ";
         }
+
         public void AddModelInCell(IModel model)
         {
             Model = model;
+            Model.CellParent = this;
             sign = model.GetSign();
+        }
+
+        public void ClearModelInCell()
+        {
+            Model = null;
+            sign = "0";
         }
     }
 }
