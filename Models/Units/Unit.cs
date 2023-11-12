@@ -16,7 +16,7 @@ namespace AZZ_LB_3_3
 
         protected int _armor;
 
-        public string? Description { get; }
+        public string? Description { get; protected set; }
 
         protected int _distanceOfMove;
         protected int _initiative;
