@@ -28,10 +28,19 @@ namespace AZZ_LB_3_3
         protected List<IAbility>? _passiveAbilities;
         protected List<IAbility>? _activeAbilities;
 
+        public Cell? CellParent { get; set; }
 
         public abstract void UseAbility(IAbility ability);
 
-        public void Move(Cell cell) { } //доделать
+        public bool TryMove(Cell? cell) //добавить условие с дистанцией
+        {
+            if (cell?.Model != null) return false;
+
+            CellParent?.ClearModelInCell();
+            cell?.AddModelInCell(this);
+
+            return true;
+        }
 
         public abstract void ApplyDamage(float amount);
 

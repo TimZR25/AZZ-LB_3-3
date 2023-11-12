@@ -10,10 +10,15 @@ namespace AZZ_LB_3_3
      public class Player
     {
         private string _name;
+       
         private List<Unit> _squadUnits;
+       
         private int _totalScore;
+       
         private string _groupPlayer;
+       
         private IAbstractFactoryUnits _unitFactory;
+       
         public string Name
         {
             get 
@@ -25,6 +30,7 @@ namespace AZZ_LB_3_3
                 _name = value;
             }
         }
+
         public List<Unit> Squad
         {
             get
@@ -36,6 +42,7 @@ namespace AZZ_LB_3_3
                 _squadUnits = value;
             }
         }
+       
         public int TotalScore
         {
             get
@@ -47,6 +54,7 @@ namespace AZZ_LB_3_3
                 _totalScore = value;
             }
         }
+
         public string GroupPlayer
         {
             get
@@ -75,7 +83,6 @@ namespace AZZ_LB_3_3
 
         public void AddUnit(Unit unit)
         {
-
             Squad.Add(unit);
         }
     }

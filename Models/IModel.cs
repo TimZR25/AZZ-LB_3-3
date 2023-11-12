@@ -8,6 +8,7 @@ namespace AZZ_LB_3_3
 {
     public interface IModel
     {
+        public Cell? CellParent { get; set; }
         public string GetSign();
     }
 }
