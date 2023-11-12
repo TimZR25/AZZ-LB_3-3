@@ -1,10 +1,12 @@
 ﻿namespace AZZ_LB_3_3
 {
-    internal class Program
+    class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            int sizeField = 3; // размер поля
+            Field field = Field.getInstance(sizeField);
+            field.FieldOut();
         }
     }
 }
