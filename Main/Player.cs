@@ -9,7 +9,7 @@ namespace AZZ_LB_3_3
      public class Player
     {
         private string _name;
-        private List<Unit> _allUnits;
+        private List<Unit> _squad;
         private Faction _factionPlayer;
         private int _totalScore;
         private string _groupPlayer;
@@ -25,15 +25,15 @@ namespace AZZ_LB_3_3
                 _name = value;
             }
         }
-        public List<Unit> AllUnits
+        public List<Unit> Squad
         {
             get
             {
-                return _allUnits;
+                return _squad;
             }
             private set
             {
-                _allUnits = value;
+                _squad = value;
             }
         }
         public Faction FactionPlayer
@@ -76,12 +76,12 @@ namespace AZZ_LB_3_3
             FactionPlayer = factionPlayer;
             TotalScore = totalScore;
             GroupPlayer = groupPlayer;
-            AllUnits = new();
+            Squad = new();
         }
 
         public void AddUnit(Unit unit)
         {
-            AllUnits.Add(unit);
+            Squad.Add(unit);
         }
     }
 }
