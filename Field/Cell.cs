@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    class Cell
+    public class Cell
     {
-        public int x { get; }
+        public int X { get; }
 
-        public int y { get; }
+        public int Y { get; }
 
-        private bool isEmpty = true;
-
-        IModel model;
+        public IModel? Model { get; private set; }
 
         string sign = "0";
         public Cell(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
         public override string ToString()
         {
@@ -29,12 +27,8 @@ namespace AZZ_LB_3_3
         }
         public void AddModelInCell(IModel model)
         {
-            this.model = model;
+            Model = model;
             sign = model.GetSign();
-        }
-        public bool GetIsEmpty()
-        {
-            return isEmpty;
         }
     }
 }

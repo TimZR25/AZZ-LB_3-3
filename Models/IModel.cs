@@ -8,6 +8,6 @@ namespace AZZ_LB_3_3
 {
     public interface IModel
     {
-        public abstract string GetSign();
+        public string GetSign();
     }
 }

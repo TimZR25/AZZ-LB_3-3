@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    class Rock : IObstacle
+    public interface IObstacle : IModel
     {
-        public string GetSign()
-        {
-            return "Ro";
-        }
+
     }
 }
