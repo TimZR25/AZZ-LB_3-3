@@ -21,8 +21,6 @@ namespace AZZ_LB_3_3
         protected int _distanceOfMove;
         protected int _initiative;
 
-        protected Faction _faction;
-
         protected int _score;
 
         protected string? _playerName;
