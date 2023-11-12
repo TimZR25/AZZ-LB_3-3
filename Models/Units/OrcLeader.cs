@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public class OrkLeader : Unit
+    public class OrcLeader : Unit
     {
+        public OrcLeader()
+        {
+            Description = "Орк лидер умело командует войском";
+        }
+
         public override void ApplyDamage(float amount)
         {
             throw new NotImplementedException();

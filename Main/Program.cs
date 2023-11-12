@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Models.Units.Roles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,18 @@ namespace AZZ_LB_3_3
             field.FieldOut();
             Console.WriteLine();
 
-            IAbstractFactoryUnits abstractFactoryUnits = new OrksFactoryUnits();
+            IAbstractFactoryUnits abstractFactoryUnits = new OrcsFactoryUnits();
 
             field.AddModel(new Rock(), 0, 0);
             field.AddModel(new Orc(), 1, 1);
             field.AddModel(abstractFactoryUnits.CreateWarrior(), 1, 2);
+
+            Player player = new Player("Глеб", TypeFaction.ORCS, 100, "Красные");
+
+            Unit unit = player.GetUnit(TypeRole.WARRIOR);
+            player.AddUnit(unit); //реализовать разделение поля на стартовые зоны
+
+            Console.WriteLine(player.Squad[0].Description);
 
             field.FieldOut();
             Console.WriteLine();
