@@ -73,7 +73,7 @@ namespace AZZ_LB_3_3
                 throw new ArgumentOutOfRangeException("Некорректные координаты для получения клетки");
             }
 
-            for (int i = 0;i < field.Count;i++) {
+            for (int i = 0; i < field.Count; i++) {
                 if (field[i].X == x && field[i].Y == y) { result = field[i]; }
             }
 

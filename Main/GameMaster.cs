@@ -25,6 +25,7 @@ namespace AZZ_LB_3_3
                 _round = value;
             }
         }
+
         public List<Unit> AllUnits
         {
             get
@@ -36,6 +37,7 @@ namespace AZZ_LB_3_3
                 _allUnits = value;
             }
         }
+
         public PriorityQueue<Unit, int> UnitsPriorityQueue
         {
             get
@@ -47,6 +49,7 @@ namespace AZZ_LB_3_3
                 _unitsPriorityQueue = value;
             }
         }
+
         public List<Player> Players
         {
             get 
@@ -58,6 +61,7 @@ namespace AZZ_LB_3_3
                 _players = value;
             }
         }
+
         public Field GameField
         {
             get
@@ -79,10 +83,15 @@ namespace AZZ_LB_3_3
             AllUnits = new();
             UnitsPriorityQueue = new();
         }
+
         public void ChangeRound()
         {
+            //определяется новая очередь
             Round++;
         }
+
+        //метод проверка на количество живых юнитов
+
         public void AddUnitList(Unit unit)
         {
             AllUnits.Add(unit);
