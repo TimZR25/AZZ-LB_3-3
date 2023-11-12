@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Factions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,9 @@ namespace AZZ_LB_3_3
     {
         private string _name;
         private List<Unit> _squadUnits;
-        //private Faction _factionPlayer;
         private int _totalScore;
         private string _groupPlayer;
-
+        private IAbstractFactoryUnits _unitFactory;
         public string Name
         {
             get 
@@ -36,17 +36,6 @@ namespace AZZ_LB_3_3
                 _squadUnits = value;
             }
         }
-        //public Faction FactionPlayer
-        //{
-        //    get
-        //    {
-        //        return _factionPlayer;
-        //    }
-        //    private set
-        //    {
-        //        _factionPlayer = value;
-        //    }
-        //}
         public int TotalScore
         {
             get
@@ -70,17 +59,23 @@ namespace AZZ_LB_3_3
             }
         }
 
-        //public Player(string name, Faction factionPlayer, int totalScore, string groupPlayer)
-        //{
-        //    Name = name;
-        //    FactionPlayer = factionPlayer;
-        //    TotalScore = totalScore;
-        //    GroupPlayer = groupPlayer;
-        //    Squad = new();
-        //}
+        public Player(string name, Faction factionPlayer, int totalScore, string groupPlayer)
+        {
+            Name = name;
+            TotalScore = totalScore;
+            GroupPlayer = groupPlayer;
+            Squad = new();
+            switch (factionPlayer) {
+                case Humans:
+                    _unitFactory = new HumansFactoryUnits();
+                    break;
+                 //доделать остальные фракции
+            }
+        }
 
         public void AddUnit(Unit unit)
         {
+
             Squad.Add(unit);
         }
     }
