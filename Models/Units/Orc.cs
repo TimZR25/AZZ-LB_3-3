@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    internal class Orc : Unit
+    public class Orc : Unit
     {
         public override void ApplyDamage(float amount)
         {

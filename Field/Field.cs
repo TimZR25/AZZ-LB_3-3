@@ -10,30 +10,30 @@ namespace AZZ_LB_3_3
     {
         private List<Cell> field;
 
-        public int? size { get; }
+        private int? _sizeSide;
 
-        private static Field instance;
+        private static Field? instance;
 
-        private Field(int? size)
+        private Field(int? sizeSide)
         {
             field = new List<Cell>();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < sizeSide; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < sizeSide; j++)
                 {
                     Cell cell = new Cell(i, j);
                     field.Add(cell);
                 }
-                this.size = size;
+                _sizeSide = sizeSide;
             }
         }
 
-        public static Field getInstance(int? size)
+        public static Field getInstance(int? sizeSide)
         {
             //if (size == null || size < 1) { throw; }   сделать проверку
             if (instance == null)
             {
-                instance = new Field(size);
+                instance = new Field(sizeSide);
             }
             return instance;
         }
@@ -48,7 +48,7 @@ namespace AZZ_LB_3_3
                 Console.Write(cell.ToString());
                 count++;
 
-                if (count % size == 0)
+                if (count % _sizeSide == 0)
                 {
                     Console.WriteLine();
                 }
@@ -58,9 +58,9 @@ namespace AZZ_LB_3_3
         {
             for (int i = 0; i < field.Count; i++)
             {
-                if (field[i].x == x && field[i].y == y)
+                if (field[i].X == x && field[i].Y == y)
                 {
-                    if (field[i].GetIsEmpty() == true) field[i].AddModelInCell(model);
+                    if (field[i].Model == null) field[i].AddModelInCell(model);
                     else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
                     break;
                 }
