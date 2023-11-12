@@ -1,5 +1,4 @@
-﻿using AZZ_LB_3_3.Factions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,14 +66,14 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public Player(string name, Faction factionPlayer, int totalScore, string groupPlayer)
+        public Player(string name, TypeFaction factionPlayer, int totalScore, string groupPlayer)
         {
             Name = name;
             TotalScore = totalScore;
             GroupPlayer = groupPlayer;
             Squad = new();
             switch (factionPlayer) {
-                case Humans:
+                case TypeFaction.HUMANS:
                     _unitFactory = new HumansFactoryUnits();
                     break;
                  //доделать остальные фракции
