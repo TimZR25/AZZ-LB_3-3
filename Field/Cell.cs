@@ -15,30 +15,33 @@ namespace AZZ_LB_3_3
 
         public IModel? Model { get; private set; }
 
-        string sign = "0";
+        private const string _startSign = "..";
+
+        private string _sign;
 
         public Cell(int x, int y)
         {
             X = x;
             Y = y;
+            _sign = _startSign;
         }
 
         public override string ToString()
         {
-            return sign + " ";
+            return _sign + " ";
         }
 
         public void AddModelInCell(IModel model)
         {
             Model = model;
             Model.CellParent = this;
-            sign = model.GetSign();
+            _sign = model.GetSign();
         }
 
         public void ClearModelInCell()
         {
             Model = null;
-            sign = "0";
+            _sign = _startSign;
         }
     }
 }

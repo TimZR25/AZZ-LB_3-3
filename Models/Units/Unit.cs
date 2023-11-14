@@ -38,7 +38,7 @@
 
         public abstract void ApplyDamage(float amount);
 
-        public void Die() { } // доделать
+        private void Die() { } // доделать
 
         public abstract string GetSign();
     }

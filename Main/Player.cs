@@ -1,6 +1,4 @@
-﻿using AZZ_LB_3_3.FactoryUnits;
-using AZZ_LB_3_3.Models.Units.Roles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -79,14 +77,6 @@ namespace AZZ_LB_3_3
 
         public Unit GetUnit(TypeRole role)
         {
-            //if (role == null) throw new ArgumentNullException("Пустая ссылка не может быть ролью");
-            //if (role is IWarrior) return _unitFactory.CreateWarrior();
-            //if (role is IArcher) return _unitFactory.CreateArcher();
-            //if (role is IMage) return _unitFactory.CreateMage();
-            //if (role is IRider) return _unitFactory.CreateRider();
-
-            //throw new ArgumentNullException("Такой роли не существует");
-
             switch (role)
             {
                 case TypeRole.WARRIOR:
@@ -97,15 +87,14 @@ namespace AZZ_LB_3_3
                     return _unitFactory.CreateMage();
                 case TypeRole.RIDER:
                     return _unitFactory.CreateRider();
-                default:
-                    break;
             }
-
-            return null;
+            throw new ArgumentOutOfRangeException("Нельзя получить юнита с такой ролью");
         }
 
         public void AddUnit(Unit unit)
         {
+            if (unit == null) throw new NullReferenceException("Игрок получил пустую ссылку на юнита");
+
             Squad.Add(unit);
         }
     }
