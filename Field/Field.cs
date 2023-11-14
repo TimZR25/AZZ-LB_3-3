@@ -8,7 +8,7 @@ namespace AZZ_LB_3_3
 {
     public class Field
     {
-        private List<Cell> field;
+        private List<Cell> _field;
 
         private int? _sizeSide;
 
@@ -16,7 +16,7 @@ namespace AZZ_LB_3_3
 
         private Field(int? sizeSide)
         {
-            field = new List<Cell>();
+            _field = new List<Cell>();
             for (int i = 0; i < sizeSide; i++)
             {
                 for (int j = 0; j < sizeSide; j++)
@@ -42,7 +42,7 @@ namespace AZZ_LB_3_3
         {
             int count = 0;
 
-            foreach (Cell cell in field)
+            foreach (Cell cell in _field)
             {
 
                 Console.Write(cell.ToString());
