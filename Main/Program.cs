@@ -1,5 +1,4 @@
-﻿using AZZ_LB_3_3.Models.Units.Roles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +10,7 @@ namespace AZZ_LB_3_3
     {
         public static void Main()
         {
-            int sizeSide = 3;
+            int sizeSide = 5;
             Field field = Field.getInstance(sizeSide);
 
             field.FieldOut();
@@ -34,7 +33,7 @@ namespace AZZ_LB_3_3
             Console.WriteLine();
 
             Cell? cell = field.GetCell(1, 1);
-            if(cell?.Model is Orc orche)
+            if(cell?.Model is OrcWarrior orche)
             {
                 if (orche.TryMove(field.GetCell(2, 2)) == false)
                     Console.WriteLine("Упс клетка занята");
