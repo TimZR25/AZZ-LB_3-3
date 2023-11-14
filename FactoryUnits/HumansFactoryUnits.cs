@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    class HumansFactoryUnits : IAbstractFactoryUnits
+    public class HumansFactoryUnits : IAbstractFactoryUnits
     {
         public Unit CreateArcher()
         {

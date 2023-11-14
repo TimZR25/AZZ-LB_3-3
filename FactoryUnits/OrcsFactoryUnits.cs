@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    class OrcsFactoryUnits : IAbstractFactoryUnits
+    public class OrcsFactoryUnits : IAbstractFactoryUnits
     {
         public Unit CreateArcher()
         {
-            throw new NotImplementedException();
+            return new OrcArcher();
         }
 
         public Unit CreateMage()
         {
-            throw new NotImplementedException();
+            return new OrcMage();
         }
 
         public Unit CreateRider()
         {
-            throw new NotImplementedException();
+            return new OrcRider();
         }
 
         public Unit CreateWarrior()
         {
-            return new OrcLeader();
+            return new OrcWarrior();
         }
     }
 }

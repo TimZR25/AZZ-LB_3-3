@@ -1,11 +1,12 @@
 ﻿namespace AZZ_LB_3_3
 {
-    public class OrcMage: Unit
+    public class OrcWarrior : Unit
     {
-        public OrcMage() 
+        public OrcWarrior()
         {
-            Description = "Орк маг колдует заклинания";
+            Description = "Орк-воин умело командует войском";
         }
+
         public override void ApplyDamage(float amount)
         {
             throw new NotImplementedException();
@@ -13,7 +14,7 @@
 
         public override string GetSign()
         {
-            return "OM";
+            return "OW";
         }
 
         public override void UseAbility(IAbility ability)

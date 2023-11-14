@@ -1,4 +1,5 @@
-﻿using AZZ_LB_3_3.Models.Units.Roles;
+﻿using AZZ_LB_3_3.FactoryUnits;
+using AZZ_LB_3_3.Models.Units.Roles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,17 +74,7 @@ namespace AZZ_LB_3_3
             TotalScore = totalScore;
             GroupPlayer = groupPlayer;
             Squad = new();
-            switch (factionPlayer) {
-                case TypeFaction.HUMANS:
-                    _unitFactory = new HumansFactoryUnits();
-                    break;
-                case TypeFaction.ORCS:
-                    _unitFactory = new OrcsFactoryUnits();
-                    break;
-                case TypeFaction.UNDEADS:
-                    _unitFactory = new UndeadsFactoryUnits();
-                    break;
-            }
+            _unitFactory = new FactoriesUnitsFactory().CreateFactory(factionPlayer);
         }
 
         public Unit GetUnit(TypeRole role)

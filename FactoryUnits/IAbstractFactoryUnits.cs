@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    interface IAbstractFactoryUnits
+    public interface IAbstractFactoryUnits
     {
         public Unit CreateWarrior();
 
