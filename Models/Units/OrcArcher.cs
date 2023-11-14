@@ -1,12 +1,11 @@
 ﻿namespace AZZ_LB_3_3
 {
-    public class OrcLeader : Unit
+    public class OrcArcher: Unit
     {
-        public OrcLeader()
+        public OrcArcher()
         {
-            Description = "Орк лидер умело командует войском";
+            Description = "Орк лучник стреляет из тяжелого лука";
         }
-
         public override void ApplyDamage(float amount)
         {
             throw new NotImplementedException();
@@ -14,7 +13,7 @@
 
         public override string GetSign()
         {
-            return "Ol";
+            return "OA";
         }
 
         public override void UseAbility(IAbility ability)

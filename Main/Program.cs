@@ -20,7 +20,7 @@ namespace AZZ_LB_3_3
             IAbstractFactoryUnits abstractFactoryUnits = new OrcsFactoryUnits();
 
             field.AddModel(new Rock(), 0, 0);
-            field.AddModel(new Orc(), 1, 1);
+            field.AddModel(new OrcArcher(), 1, 1);
             field.AddModel(abstractFactoryUnits.CreateWarrior(), 1, 2);
 
             Player player = new Player("Глеб", TypeFaction.ORCS, 100, "Красные");

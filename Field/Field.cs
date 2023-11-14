@@ -8,7 +8,7 @@ namespace AZZ_LB_3_3
 {
     public class Field
     {
-        private List<Cell> field;
+        private List<Cell> _field;
 
         private int? _sizeSide;
 
@@ -16,13 +16,13 @@ namespace AZZ_LB_3_3
 
         private Field(int? sizeSide)
         {
-            field = new List<Cell>();
+            _field = new List<Cell>();
             for (int i = 0; i < sizeSide; i++)
             {
                 for (int j = 0; j < sizeSide; j++)
                 {
                     Cell cell = new Cell(i, j);
-                    field.Add(cell);
+                    _field.Add(cell);
                 }
                 _sizeSide = sizeSide;
             }
@@ -42,7 +42,7 @@ namespace AZZ_LB_3_3
         {
             int count = 0;
 
-            foreach (Cell cell in field)
+            foreach (Cell cell in _field)
             {
 
                 Console.Write(cell.ToString());
@@ -56,11 +56,11 @@ namespace AZZ_LB_3_3
         }
         public void AddModel(IModel model, int x, int y)
         {
-            for (int i = 0; i < field.Count; i++)
+            for (int i = 0; i < _field.Count; i++)
             {
-                if (field[i].X == x && field[i].Y == y)
+                if (_field[i].X == x && _field[i].Y == y)
                 {
-                    if (field[i].Model == null) field[i].AddModelInCell(model);
+                    if (_field[i].Model == null) _field[i].AddModelInCell(model);
                     else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
                     break;
                 }
@@ -74,8 +74,8 @@ namespace AZZ_LB_3_3
                 throw new ArgumentOutOfRangeException("Некорректные координаты для получения клетки");
             }
 
-            for (int i = 0; i < field.Count; i++) {
-                if (field[i].X == x && field[i].Y == y) { result = field[i]; }
+            for (int i = 0; i < _field.Count; i++) {
+                if (_field[i].X == x && _field[i].Y == y) { result = _field[i]; }
             }
 
             return result;
