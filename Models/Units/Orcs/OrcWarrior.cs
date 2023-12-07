@@ -5,6 +5,7 @@
         public OrcWarrior()
         {
             Description = "Орк-воин умело командует войском";
+            _distanceOfMove = 2;
         }
 
         public override void ApplyDamage(float amount)

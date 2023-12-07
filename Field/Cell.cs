@@ -9,11 +9,9 @@ namespace AZZ_LB_3_3
 {
     public class Cell
     {
-        public int X { get; }
-
-        public int Y { get; }
-
         public IModel? Model { get; private set; }
+
+        public List<Cell> Neighbors { get; set; }
 
         private const string _startSign = "..";
 
@@ -21,8 +19,7 @@ namespace AZZ_LB_3_3
 
         public Cell(int x, int y)
         {
-            X = x;
-            Y = y;
+            Neighbors = new List<Cell>();
             _sign = _startSign;
         }
 
