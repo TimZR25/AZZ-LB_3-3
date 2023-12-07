@@ -5,6 +5,7 @@
         public OrcArcher()
         {
             Description = "Орк-лучник стреляет из тяжелого лука";
+            _distanceOfMove = 2;
         }
         public override void ApplyDamage(float amount)
         {

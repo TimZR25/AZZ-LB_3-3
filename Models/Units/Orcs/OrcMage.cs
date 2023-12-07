@@ -5,6 +5,7 @@
         public OrcMage() 
         {
             Description = "Орк-маг колдует заклинания";
+            _distanceOfMove = 1;
         }
         public override void ApplyDamage(float amount)
         {
