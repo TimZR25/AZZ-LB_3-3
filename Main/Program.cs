@@ -10,7 +10,7 @@ namespace AZZ_LB_3_3
     {
         public static void Main()
         {
-            int sizeSide = 5;
+            int sizeSide = 10;
             Field field = Field.getInstance(sizeSide);
 
             field.FieldOut();
@@ -33,9 +33,31 @@ namespace AZZ_LB_3_3
             Console.WriteLine();
 
             Cell? cell = field.GetCell(1, 1);
-            if(cell?.Model is OrcWarrior orche)
+            if(cell?.Model is Unit orche)
             {
                 if (orche.TryMove(field.GetCell(2, 2)) == false)
+                    Console.WriteLine("Упс клетка занята");
+            }
+
+            field.FieldOut();
+            Console.WriteLine();
+
+            field.ClearField();
+
+            Cell? c = field.GetCell(4, 4);
+            foreach (Cell cell1 in field.GetNeighborsRadius(c, 2))
+            {
+                cell1.AddModelInCell(new OrcRider());
+            }
+            field.FieldOut();
+            Console.WriteLine();
+
+
+            field.AddModel(abstractFactoryUnits.CreateWarrior(), 0, 1);
+            Cell? ce = field.GetCell(0, 1);
+            if (ce?.Model is Unit or) // подумать как тип
+            {
+                if (or.TryMove(field.GetCell(2, 0)) == false)
                     Console.WriteLine("Упс клетка занята");
             }
 
