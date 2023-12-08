@@ -5,6 +5,7 @@
         public OrcRider()
         {
             Description = "Орк-наездник рвется в бой";
+            _distanceOfMove = 4;
         }
         public override void ApplyDamage(float amount)
         {
