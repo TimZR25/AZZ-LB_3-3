@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public class Cell
+    public class Cell : ICell
     {
         public IModel? Model { get; private set; }
 
