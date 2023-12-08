@@ -9,6 +9,8 @@ namespace AZZ_LB_3_3
 {
     public class Field
     {
+        public IFieldPrint fieldPrint { get; private set; }
+
         private Cell[,] _field;
 
         private int _sizeSide;
@@ -42,18 +44,6 @@ namespace AZZ_LB_3_3
                 instance = new Field((int)sizeSide);
             }
             return instance;
-        }
-
-        public void FieldOut()
-        {
-            for (int x = 0; x < _sizeSide; x++)
-            {
-                for (int y = 0; y < _sizeSide; y++)
-                {
-                    Console.Write(_field[x, y]);
-                }
-                Console.WriteLine();
-            }
         }
 
         public void AddModel(IModel model, int x, int y)
