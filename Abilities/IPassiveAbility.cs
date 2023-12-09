@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3
+namespace AZZ_LB_3_3.Abilities
 {
-    public interface IAbility
+    public interface IPassiveAbility : IAbility
     {
-        string Description { get; set; }
-        decimal Execute(decimal power);
     }
 }
