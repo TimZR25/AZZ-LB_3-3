@@ -45,6 +45,25 @@ namespace AZZ_LB_3_3
             }
 
             field.FieldOut();
+            field.ClearField();
+
+
+            Console.WriteLine("------------------Тест GM--------------------\n");
+
+            List<Player> players = new List<Player>() { new Player("p1", TypeFaction.ORCS, 1000, "blue"), new Player("p2", TypeFaction.ORCS, 1000, "red")};
+            //как-то получили пользователей
+
+            GameMaster gameMaster = new GameMaster(players, field);
+
+            //какая-то расстановка юнитов(0 ход)
+
+            
+
+            //
+
+            gameMaster.GameField.FieldOut();
+
+
         }
     }
 }
