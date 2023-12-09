@@ -8,6 +8,6 @@ namespace AZZ_LB_3_3
 {
     public interface IFieldPrint
     {
-        public void FieldOut(ICell[,] field);
+        //public void FieldOut(ICell[,] field);
     }
 }
