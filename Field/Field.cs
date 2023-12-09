@@ -17,6 +17,18 @@ namespace AZZ_LB_3_3
 
         private static Field? instance;
 
+        public void FieldOut()
+        {
+            for (int x = 0; x < _field.GetLength(0); x++)
+            {
+                for (int y = 0; y < _field.GetLength(1); y++)
+                {
+                    Console.Write(_field[x, y]);
+                }
+                Console.WriteLine();
+            }
+        }
+
         private Field(int sizeSide)
         {
             _sizeSide = sizeSide;
