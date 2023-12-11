@@ -2,25 +2,25 @@
 {
     public abstract class Unit : IModel
     {
-        protected string? _name;
+        public string? Name { get; }
 
-        protected decimal _maxHealth;
+        protected int _maxHealth;
 
-        protected decimal _health;
+        protected int _health;
+
+        protected decimal Power { get; set; }
 
         protected int _armor;
-
-        protected decimal _amountEnergy;
 
         public string? Description { get; protected set; }
 
         protected int _distanceOfMove;
 
-        protected int _distanceAttack;
+        protected int _initiative;
 
-        protected decimal _initiative;
+        public int Score { get; }
 
-        protected int _score;
+
 
         protected string? _playerName;
 
