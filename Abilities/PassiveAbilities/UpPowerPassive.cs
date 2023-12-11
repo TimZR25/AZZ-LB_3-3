@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 {
-    public class Regeneration : IPassiveAbility
+    public class UpPowerPassive : IPassiveAbility
     {
         public string Description { get; set; }
 
-        public Regeneration() // подумать
+        public UpPowerPassive() // подумать
         {
-            Description = "Регенирация";
+            Description = "Повышает мощность раз в N ходов";
         }
 
         public decimal Execute(decimal power)
         {
-            return power * (decimal)1.2;
+            return power * (decimal)1.1;
         }
     }
 }

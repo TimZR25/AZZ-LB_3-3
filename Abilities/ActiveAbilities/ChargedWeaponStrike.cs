@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Abilities.ActriveAbilities
+namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
-    public class WeaponStrike : IActiveAbility
+    public class ChargedWeaponStrike
     {
         public string Description { get; set; }
         public int Сost { get; set; }
 
-        public WeaponStrike(int сost) // подумать
+        public ChargedWeaponStrike(int сost) // подумать
         {
-            Description = "Обчный удар оружием";
+            Description = "Заряженный удар оружием";
             Сost = сost;
         }
 

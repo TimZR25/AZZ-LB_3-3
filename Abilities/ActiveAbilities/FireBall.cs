@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Abilities.ActriveAbilities
+namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
     public class FireBall : IActiveAbility
     {
@@ -13,7 +13,7 @@ namespace AZZ_LB_3_3.Abilities.ActriveAbilities
 
         public FireBall(int сost) // подумать
         {
-            Description = "Огненый шар наносит много урона";
+            Description = "Огненный шар наносит много урона";
             Сost = сost;
         }
 

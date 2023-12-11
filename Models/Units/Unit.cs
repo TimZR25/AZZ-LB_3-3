@@ -4,9 +4,9 @@
     {
         public string? Name { get; }
 
-        protected int _maxHealth;
+        protected decimal _maxHealth;
 
-        protected int _health;
+        protected decimal _health;
 
         protected decimal Power { get; set; }
 

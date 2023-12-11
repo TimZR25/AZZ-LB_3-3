@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Abilities.ActriveAbilities
+namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
-    public class UpInitiativeActive
+    public class WeaponStrike : IActiveAbility
     {
         public string Description { get; set; }
         public int Сost { get; set; }
 
-        public UpInitiativeActive(int сost) // подумать
+        public WeaponStrike(int сost) // подумать
         {
-            Description = "Увеличивает инициативу";
+            Description = "Обычный удар оружием";
             Сost = сost;
         }
 
         public decimal Execute(decimal power)
         {
-            return power * (decimal)0.3;
+            return power * 3;
         }
     }
 }
