@@ -9,15 +9,15 @@ namespace AZZ_LB_3_3
 {
     public class CombatStage
     {
-        private List<Unit> _allUnits;
-        private PriorityQueue<Unit,int> _unitsPriorityQueue;
-        private List<Player> _players;
-        private Field _gameField;
+        private List<IUnit> _allUnits;
+        private PriorityQueue<IUnit,int> _unitsPriorityQueue;
+        private List<IPlayer> _players;
+        private IField _gameField;
 
 
         public IRoundManager round;
 
-        public List<Unit> AllUnits
+        public List<IUnit> AllUnits
         {
             get
             {
@@ -29,7 +29,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public PriorityQueue<Unit, int> UnitsPriorityQueue
+        public PriorityQueue<IUnit, int> UnitsPriorityQueue
         {
             get
             {
@@ -41,7 +41,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public List<Player> Players
+        public List<IPlayer> Players
         {
             get 
             { 
@@ -53,7 +53,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public Field GameField
+        public IField GameField
         {
             get
             {
@@ -66,7 +66,7 @@ namespace AZZ_LB_3_3
         }
 
         //проверки для всех свойств
-        public CombatStage(List<Player> players, Field field)
+        public CombatStage(List<IPlayer> players, IField field)
         {
             Players = players;
             GameField = field;
@@ -77,7 +77,7 @@ namespace AZZ_LB_3_3
 
         //метод проверка на количество живых юнитов
 
-        public void AddUnitList(Unit unit)
+        public void AddUnitList(IUnit unit)
         {
             AllUnits.Add(unit);
         }

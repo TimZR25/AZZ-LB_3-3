@@ -1,6 +1,8 @@
-﻿namespace AZZ_LB_3_3
+﻿using AZZ_LB_3_3.Models.Units;
+
+namespace AZZ_LB_3_3
 {
-    public abstract class Unit : IModel
+    public abstract class Unit : IUnit
     {
         public string? Name { get; }
 
