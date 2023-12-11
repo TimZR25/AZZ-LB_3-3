@@ -4,16 +4,21 @@
     {
         protected string? _name;
 
-        protected int _maxHealth;
+        protected decimal _maxHealth;
 
-        protected int _health;
+        protected decimal _health;
 
         protected int _armor;
+
+        protected decimal _amountEnergy;
 
         public string? Description { get; protected set; }
 
         protected int _distanceOfMove;
-        protected int _initiative;
+
+        protected int _distanceAttack;
+
+        protected decimal _initiative;
 
         protected int _score;
 
