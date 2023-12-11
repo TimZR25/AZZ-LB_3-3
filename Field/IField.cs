@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public class CellConsoleOut : ICellView
+    public interface IField
     {
+        void AddModel(IModel model, int x, int y);
+        public void ClearField();
     }
 }

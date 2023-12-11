@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public interface ICell<T>
+    public interface ICell
     {
-        T Value { get; set; }
+        public IModel? Model { get; set; }
+        public List<Cell> Neighbors { get; set; }
+        public void AddModelInCell(IModel model);
+        public void ClearModelInCell();
     }
 }
