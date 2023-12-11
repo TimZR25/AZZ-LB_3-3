@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-     public class Player
-    {
+     public class Player : IPlayer
+     {
         private string _name;
        
-        private List<Unit> _squadUnits;
-       
-        private int _totalScore;
-       
-        private string _groupPlayer;
-       
+        private List<Unit> _controlledUnits;
+          
         private IAbstractFactoryUnits _unitFactory;
        
         public string Name
@@ -24,54 +21,28 @@ namespace AZZ_LB_3_3
             {
                 return _name;
             }
-            private set
+            set
             {
                 _name = value;
             }
         }
 
-        public List<Unit> Squad
+        public List<Unit> ControlledUnits
         {
             get
             {
-                return _squadUnits;
+                return _controlledUnits;
             }
-            private set
+            set
             {
-                _squadUnits = value;
-            }
-        }
-       
-        public int TotalScore
-        {
-            get
-            {
-                return _totalScore;
-            }
-            private set
-            {
-                _totalScore = value;
+                _controlledUnits = value;
             }
         }
 
-        public string GroupPlayer
-        {
-            get
-            {
-                return _groupPlayer;
-            }
-            private set
-            {
-                _groupPlayer = value;
-            }
-        }
-
-        public Player(string name, TypeFaction factionPlayer, int totalScore, string groupPlayer)
+        public Player(string name, TypeFaction factionPlayer)
         {
             Name = name;
-            TotalScore = totalScore;
-            GroupPlayer = groupPlayer;
-            Squad = new();
+            ControlledUnits = new();
             _unitFactory = new FactoriesUnitsFactory().CreateFactory(factionPlayer);
         }
 
@@ -95,7 +66,7 @@ namespace AZZ_LB_3_3
         {
             if (unit == null) throw new NullReferenceException("Игрок получил пустую ссылку на юнита");
 
-            Squad.Add(unit);
+            ControlledUnits.Add(unit);
         }
     }
 }

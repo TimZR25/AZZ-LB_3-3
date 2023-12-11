@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public class Field
+    public class Field : IField
     {
         public IFieldPrint fieldPrint { get; private set; }
 
@@ -92,7 +92,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        static IEnumerable<int> Shifts(int v, int? max)
+        private IEnumerable<int> Shifts(int v, int? max)
         {
             yield return 0;
             if (v > 0) yield return -1;
