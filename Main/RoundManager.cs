@@ -17,6 +17,7 @@ namespace AZZ_LB_3_3.Main
 
         public void NextRound()
         {
+            //очередь
             Round++;
         }
     }

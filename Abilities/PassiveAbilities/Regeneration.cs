@@ -12,7 +12,7 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 
         public Regeneration() // подумать
         {
-            Description = "Регенирация";
+            Description = "Регенерация";
         }
 
         public decimal Execute(decimal power)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Main;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,27 +7,17 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public class GameMaster
+    public class CombatStage
     {
-        private int _round;
-        private List<Unit> _allUnits;
-        private PriorityQueue<Unit,int> _unitsPriorityQueue;
-        private List<Player> _players;
-        private Field _gameField;
+        private List<IUnit> _allUnits;
+        private PriorityQueue<IUnit,int> _unitsPriorityQueue;
+        private List<IPlayer> _players;
+        private IField _gameField;
 
-        public int Round
-        {
-            get
-            {
-                return _round;
-            }
-            private set
-            {
-                _round = value;
-            }
-        }
 
-        public List<Unit> AllUnits
+        public IRoundManager round;
+
+        public List<IUnit> AllUnits
         {
             get
             {
@@ -38,7 +29,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public PriorityQueue<Unit, int> UnitsPriorityQueue
+        public PriorityQueue<IUnit, int> UnitsPriorityQueue
         {
             get
             {
@@ -50,7 +41,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public List<Player> Players
+        public List<IPlayer> Players
         {
             get 
             { 
@@ -62,7 +53,7 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public Field GameField
+        public IField GameField
         {
             get
             {
@@ -74,25 +65,19 @@ namespace AZZ_LB_3_3
             }
         }
 
-
-        public GameMaster(List<Player> players, Field field)
+        //проверки для всех свойств
+        public CombatStage(List<IPlayer> players, IField field)
         {
             Players = players;
             GameField = field;
-            Round = 0;
+            round = new RoundManager();
             AllUnits = new();
             UnitsPriorityQueue = new();
         }
 
-        public void ChangeRound()
-        {
-            //определяется новая очередь
-            Round++;
-        }
-
         //метод проверка на количество живых юнитов
 
-        public void AddUnitList(Unit unit)
+        public void AddUnitList(IUnit unit)
         {
             AllUnits.Add(unit);
         }
