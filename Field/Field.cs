@@ -11,7 +11,7 @@ namespace AZZ_LB_3_3
     {
         public IFieldPrint fieldPrint { get; private set; }
 
-        private Cell[,] _field;
+        private ICell[,] _field;
 
         private int _sizeSide;
 
@@ -29,33 +29,22 @@ namespace AZZ_LB_3_3
             }
         }
 
-        private Field(int sizeSide)
+        public Field(int sizeSide)
         {
             _sizeSide = sizeSide;
 
-            _field = new Cell[_sizeSide, _sizeSide];
+            _field = new ICell[_sizeSide, _sizeSide];
 
             for (int x = 0; x < _sizeSide; x++)
             {
                 for (int y = 0; y < _sizeSide; y++)
                 {
-                    Cell cell = new Cell(x, y);
+                    ICell cell = new Cell(x, y);
                     _field[x, y] = cell;
                 }
             }
 
             AddNeighborsAll();
-        }
-
-        public static Field getInstance(int? sizeSide) // исправить параметры и доработать singleton
-        {
-            if (sizeSide == null || sizeSide < 2) throw new ArgumentNullException(nameof(sizeSide));
-
-            if (instance == null)
-            {
-                instance = new Field((int)sizeSide);
-            }
-            return instance;
         }
 
         public void AddModel(IModel model, int x, int y)
@@ -64,7 +53,7 @@ namespace AZZ_LB_3_3
             else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
         }
 
-        public Cell? GetCell(int x, int y)
+        public ICell? GetCell(int x, int y)
         {
             if (x > _sizeSide || y > _sizeSide || x < 0 || y < 0) {
                 throw new ArgumentOutOfRangeException("Некорректные координаты для получения клетки");
@@ -75,7 +64,7 @@ namespace AZZ_LB_3_3
 
         public void ClearField()
         {
-            foreach (Cell cell in _field)
+            foreach (ICell cell in _field)
             {
                 cell.ClearModelInCell();
             }
@@ -112,22 +101,22 @@ namespace AZZ_LB_3_3
             }
         }
 
-        public List<Cell> GetNeighborsRadius(Cell? cell, int? radius)
+        public List<ICell> GetNeighborsRadius(ICell cell, int radius)
         {
             if (cell == null) throw new ArgumentNullException("Пустая ссылка на клетку");
             if (radius == null) throw new ArgumentNullException("Пустая ссылка на радиус");
             if (radius < 1) throw new ArgumentOutOfRangeException("Радиус не может быть меньше 1");
 
-            HashSet<Cell> result = new HashSet<Cell>(cell.Neighbors);
+            HashSet<ICell> result = new HashSet<ICell>(cell.Neighbors);
             result.Add(cell);
 
             int count = 1;
 
-            HashSet<Cell> neighbors = new HashSet<Cell>(cell.Neighbors);
+            HashSet<ICell> neighbors = new HashSet<ICell>(cell.Neighbors);
 
             while (count != radius)
             {
-                List<Cell> currentCells = new List<Cell>(neighbors);
+                List<ICell> currentCells = new List<ICell>(neighbors);
                 neighbors.Clear();
 
                 for (int i = 0; i < currentCells.Count; i++)
@@ -143,7 +132,7 @@ namespace AZZ_LB_3_3
 
             result.Remove(cell);
 
-            return new List<Cell>(result);
+            return new List<ICell>(result);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace AZZ_LB_3_3.Main.Player
+﻿namespace AZZ_LB_3_3.Main.PlayerField
 {
     public class DataPlayer : IDataPlayer
     {

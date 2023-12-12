@@ -1,4 +1,5 @@
-﻿using AZZ_LB_3_3.Main.Player;
+﻿using AZZ_LB_3_3.Main.CombatStageField;
+using AZZ_LB_3_3.Main.PlayerField;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Main.CombatStage
 {
-    public class CombatStage
+    public class CombatStage : ICombatStage
     {
-        private List<IUnit> _allUnits;
         private PriorityQueue<IUnit, int> _unitsPriorityQueue;
         private List<IPlayer> _players;
         private IField _gameField;
+
+        private List<IUnit> _invokedUnits;
 
 
         public IRoundManager round;
@@ -21,11 +23,14 @@ namespace AZZ_LB_3_3.Main.CombatStage
         {
             get
             {
-                return _allUnits;
-            }
-            private set
-            {
-                _allUnits = value;
+                List<IUnit> units = new List<IUnit>();
+
+                foreach (IPlayer player in _players)
+                {
+                    units.Concat(player.ControlledUnits);
+                }
+                
+                return units;
             }
         }
 
@@ -71,15 +76,26 @@ namespace AZZ_LB_3_3.Main.CombatStage
             Players = players;
             GameField = field;
             round = new RoundManager();
-            AllUnits = new();
             UnitsPriorityQueue = new();
         }
-
-        //метод проверка на количество живых юнитов
 
         public void AddUnitList(IUnit unit)
         {
             AllUnits.Add(unit);
         }
+
+        public void RebuildQueue()
+        {
+            _unitsPriorityQueue.Clear();
+
+            foreach (IPlayer player in _players)
+            {
+                foreach (IUnit unit in player.ControlledUnits)
+                {
+                    _unitsPriorityQueue.Enqueue(unit, -unit.Initiative);
+                }
+            }
+        }
+
     }
 }

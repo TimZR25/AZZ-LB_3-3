@@ -8,6 +8,12 @@ namespace AZZ_LB_3_3
 {
     public interface IUnit : IModel
     {
-        //написать
+        public string PlayerName { get; set; }
+
+        public int Initiative { get; set; }
+
+        public int Score { get; }
+
+        public bool TryMove(ICell cell, IField field);
     }
 }

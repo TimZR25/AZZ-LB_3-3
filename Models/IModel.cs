@@ -8,7 +8,14 @@ namespace AZZ_LB_3_3
 {
     public interface IModel
     {
-        public Cell? CellParent { get; set; }
+        public EventHandler<IUnit> OnDead { get; set; }
+
+        public ICell? CellParent { get; set; }
         public string GetSign();
+
+        public void ApplyDamage(decimal damageAmount);
+        public void ApplyHealth(decimal healthAmount);
+
+        public void Die();
     }
 }
