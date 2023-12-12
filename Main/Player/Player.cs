@@ -1,23 +1,22 @@
-﻿using AZZ_LB_3_3.Main;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3
+namespace AZZ_LB_3_3.Main.Player
 {
-     public class Player : IPlayer
-     {
+    public class Player : IPlayer
+    {
         private string _name;
-       
+
         private List<Unit> _controlledUnits;
-          
+
         private IAbstractFactoryUnits _unitFactory;
-       
+
         public string Name
         {
-            get 
+            get
             {
                 return _name;
             }

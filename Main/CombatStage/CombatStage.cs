@@ -1,16 +1,16 @@
-﻿using AZZ_LB_3_3.Main;
+﻿using AZZ_LB_3_3.Main.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3
+namespace AZZ_LB_3_3.Main.CombatStage
 {
     public class CombatStage
     {
         private List<IUnit> _allUnits;
-        private PriorityQueue<IUnit,int> _unitsPriorityQueue;
+        private PriorityQueue<IUnit, int> _unitsPriorityQueue;
         private List<IPlayer> _players;
         private IField _gameField;
 
@@ -43,9 +43,9 @@ namespace AZZ_LB_3_3
 
         public List<IPlayer> Players
         {
-            get 
-            { 
-                return _players; 
+            get
+            {
+                return _players;
             }
             private set
             {
