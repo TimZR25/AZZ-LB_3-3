@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace AZZ_LB_3_3.Main.Player
+namespace AZZ_LB_3_3.Main.PlayerField
 {
     public interface IPlayer
     {
         public string Name { get; set; }
 
-        public List<Unit> ControlledUnits { get; set; }
+        public List<IUnit> ControlledUnits { get; set; }
 
     }
 }

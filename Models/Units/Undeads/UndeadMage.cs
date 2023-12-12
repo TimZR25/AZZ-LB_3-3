@@ -7,19 +7,10 @@
             Description = "Нежить-маг колдует заклинания";
             _distanceOfMove = 1;
         }
-        public override void ApplyDamage(float amount)
-        {
-            throw new NotImplementedException();
-        }
 
         public override string GetSign()
         {
             return "OM";
-        }
-
-        public override void UseAbility(IAbility ability)
-        {
-            throw new NotImplementedException();
         }
     }
 }

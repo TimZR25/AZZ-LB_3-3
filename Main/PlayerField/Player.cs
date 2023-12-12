@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Main.Player
+namespace AZZ_LB_3_3.Main.PlayerField
 {
     public class Player : IPlayer
     {
         private string _name;
 
-        private List<Unit> _controlledUnits;
+        private List<IUnit> _controlledUnits;
 
         private IAbstractFactoryUnits _unitFactory;
 
@@ -26,7 +26,7 @@ namespace AZZ_LB_3_3.Main.Player
             }
         }
 
-        public List<Unit> ControlledUnits
+        public List<IUnit> ControlledUnits
         {
             get
             {
@@ -61,11 +61,20 @@ namespace AZZ_LB_3_3.Main.Player
             throw new ArgumentOutOfRangeException("Нельзя получить юнита с такой ролью");
         }
 
-        public void AddUnit(Unit unit)
+        public void AddUnit(IUnit unit)
         {
             if (unit == null) throw new NullReferenceException("Игрок получил пустую ссылку на юнита");
 
+            unit.OnDead += RemoveUnit;
+
             ControlledUnits.Add(unit);
+        }
+
+        public void RemoveUnit(object sender, IUnit unit)
+        {
+            unit.OnDead -= RemoveUnit;
+
+            ControlledUnits.Remove(unit);
         }
     }
 }

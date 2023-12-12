@@ -1,4 +1,4 @@
-﻿using AZZ_LB_3_3.Models.Units;
+﻿using AZZ_LB_3_3.Abilities;
 
 namespace AZZ_LB_3_3
 {
@@ -18,26 +18,36 @@ namespace AZZ_LB_3_3
 
         protected int _distanceOfMove;
 
-        protected int _initiative;
+        public int Initiative { get; set; }
 
         public int Score { get; }
 
+        public int AmountEnergy { get; set; }
 
+        public string PlayerName { get; set; }
 
-        protected string? _playerName;
+        protected List<IPassiveAbility>? _passiveAbilities;
+        protected List<IActiveAbility>? _activeAbilities;
 
-        protected List<IAbility>? _passiveAbilities;
-        protected List<IAbility>? _activeAbilities;
+        public ICell? CellParent { get; set; }
 
-        public Cell? CellParent { get; set; }
+        public EventHandler<IUnit> OnDead { get; set; }
 
-        public abstract void UseAbility(IAbility ability);
+        public void UseAbility(IActiveAbility ability, ICell cell)
+        {
+            if (AmountEnergy < ability.Сost) return;
 
-        public bool TryMove(Cell? cell)
+            decimal amount = ability.Execute(Power);
+
+            if (amount < 0) cell.Model.ApplyDamage(amount);
+            if (amount > 0) ApplyHealth(amount);
+        }
+
+        public bool TryMove(ICell? cell, IField field)
         {
             if (cell?.Model != null) return false;
             
-            if (Field.getInstance(5).GetNeighborsRadius(CellParent, _distanceOfMove).Contains(cell))
+            if (field.GetNeighborsRadius(CellParent, _distanceOfMove).Contains(cell))
             {
                 CellParent?.ClearModelInCell();
                 cell?.AddModelInCell(this);
@@ -48,9 +58,35 @@ namespace AZZ_LB_3_3
             return false;
         }
 
-        public abstract void ApplyDamage(float amount);
+        public void ApplyDamage(decimal damageAmount)
+        {
+            decimal multuiplier = (1 - _armor);
+            if (_health - (multuiplier * damageAmount) <= 0)
+            {
+                Die();
+                return;
+            }
 
-        private void Die() { } // сделать
+            _health -= damageAmount * multuiplier;
+        }
+
+        public void ApplyHealth(decimal healthAmount)
+        {
+            if (_maxHealth > _health + healthAmount)
+            {
+                _health = _maxHealth;
+                return;
+            }
+
+            _health += healthAmount;
+        }
+
+        public void Die()
+        {
+            CellParent?.ClearModelInCell();
+
+            OnDead?.Invoke(this, this);
+        }
 
         public abstract string GetSign();
     }
