@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Main
+namespace AZZ_LB_3_3.Main.CombatStage
 {
     public class RoundManager : IRoundManager
     {

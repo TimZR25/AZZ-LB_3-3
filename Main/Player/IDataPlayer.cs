@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AZZ_LB_3_3.Main
+namespace AZZ_LB_3_3.Main.Player
 {
-    public interface IFirstStageView
+    public interface IDataPlayer
     {
-        //int SizeMatix { get; set; }
-        string Name { get; set; }
+        public string Name { get; set; }
         public TypeFaction Faction { get; set; }// сделать проверку для всего
         public int Score { get; set; }
     }
