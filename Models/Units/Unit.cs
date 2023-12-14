@@ -4,27 +4,13 @@ namespace AZZ_LB_3_3
 {
     public abstract class Unit : IUnit
     {
-        public string? Name { get; }
-
-        protected decimal _maxHealth;
-
-        protected decimal _health;
-
-        protected decimal Power { get; set; }
-
-        protected int _armor;
-
-        public string? Description { get; protected set; }
-
-        protected int _distanceOfMove;
-
+        public decimal CurrentHealth { get; set; }
+        public decimal Power { get; set; }
+        public int Armor { get; set; }
+        public string Description { get; set; }
+        public int DistanceOfMove { get; set; }
         public int Initiative { get; set; }
-
-        public int Score { get; }
-
         public int AmountEnergy { get; set; }
-
-        public string PlayerName { get; set; }
 
         protected List<IPassiveAbility>? _passiveAbilities;
         protected List<IActiveAbility>? _activeAbilities;
@@ -32,6 +18,14 @@ namespace AZZ_LB_3_3
         public ICell? CellParent { get; set; }
 
         public EventHandler<IUnit> OnDead { get; set; }
+
+        public string Name => throw new NotImplementedException();
+
+        public decimal MaxHealth => throw new NotImplementedException();
+
+        public int Score => throw new NotImplementedException();
+
+        
 
         public void UseAbility(IActiveAbility ability, ICell cell)
         {
@@ -47,10 +41,10 @@ namespace AZZ_LB_3_3
         {
             if (cell?.Model != null) return false;
             
-            if (field.GetNeighborsRadius(CellParent, _distanceOfMove).Contains(cell))
+            if (field.GetNeighborsRadius(CellParent, DistanceOfMove).Contains(cell))
             {
-                CellParent?.ClearModelInCell();
-                cell?.AddModelInCell(this);
+                CellParent.Model = null;
+                cell.Model = this;
 
                 return true;
             }
@@ -60,30 +54,30 @@ namespace AZZ_LB_3_3
 
         public void ApplyDamage(decimal damageAmount)
         {
-            decimal multuiplier = (1 - _armor);
-            if (_health - (multuiplier * damageAmount) <= 0)
+            decimal multuiplier = (1 - Armor);
+            if (CurrentHealth - (multuiplier * damageAmount) <= 0)
             {
                 Die();
                 return;
             }
 
-            _health -= damageAmount * multuiplier;
+            CurrentHealth -= damageAmount * multuiplier;
         }
 
         public void ApplyHealth(decimal healthAmount)
         {
-            if (_maxHealth > _health + healthAmount)
+            if (MaxHealth > CurrentHealth + healthAmount)
             {
-                _health = _maxHealth;
+                CurrentHealth = MaxHealth;
                 return;
             }
 
-            _health += healthAmount;
+            CurrentHealth += healthAmount;
         }
 
         public void Die()
         {
-            CellParent?.ClearModelInCell();
+            CellParent.Model = null;
 
             OnDead?.Invoke(this, this);
         }

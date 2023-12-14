@@ -5,7 +5,7 @@
         public HumanArcher()
         {
             Description = "Человек-лучник стреляет из тяжелого лука";
-            _distanceOfMove = 2;
+            DistanceOfMove = 2;
         }
 
         public override string GetSign()

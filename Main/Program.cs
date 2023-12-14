@@ -26,13 +26,13 @@ namespace AZZ_LB_3_3
             field.AddModel(abstractFactoryUnits.CreateRider(), 4, 4);
 
             ICell? rockCell = field.GetCell(8, 8);
-            rockCell?.AddModelInCell(new Rock());
-            foreach (ICell c in field.GetNeighborsRadius(rockCell, 1)) c.AddModelInCell(new Rock());
+            rockCell.Model = new Rock();
+            foreach (ICell c in field.GetNeighborsRadius(rockCell, 1)) c.Model = new Rock();
 
 
             rockCell = field.GetCell(8, 1);
-            rockCell?.AddModelInCell(new Rock());
-            foreach (ICell c in field.GetNeighborsRadius(rockCell, 2)) c.AddModelInCell(new Rock());
+            rockCell.Model = new Rock();
+            foreach (ICell c in field.GetNeighborsRadius(rockCell, 2)) c.Model = new Rock();
 
             field.FieldOut();
             Console.WriteLine();

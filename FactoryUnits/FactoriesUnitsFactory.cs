@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public sealed class FactoriesUnitsFactory
+    public class FactoriesUnitsFactory
     {
         public IAbstractFactoryUnits CreateFactory(TypeFaction typeFaction) => typeFaction switch
         {

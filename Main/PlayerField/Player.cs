@@ -16,26 +16,14 @@ namespace AZZ_LB_3_3.Main.PlayerField
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public List<IUnit> ControlledUnits
         {
-            get
-            {
-                return _controlledUnits;
-            }
-            set
-            {
-                _controlledUnits = value;
-            }
+            get { return _controlledUnits; }
+            set { _controlledUnits = value; }
         }
 
         public Player(string name, TypeFaction factionPlayer)
@@ -43,22 +31,6 @@ namespace AZZ_LB_3_3.Main.PlayerField
             Name = name;
             ControlledUnits = new();
             _unitFactory = new FactoriesUnitsFactory().CreateFactory(factionPlayer);
-        }
-
-        public Unit GetUnit(TypeRole role)
-        {
-            switch (role)
-            {
-                case TypeRole.WARRIOR:
-                    return _unitFactory.CreateWarrior();
-                case TypeRole.ARCHER:
-                    return _unitFactory.CreateArcher();
-                case TypeRole.MAGE:
-                    return _unitFactory.CreateMage();
-                case TypeRole.RIDER:
-                    return _unitFactory.CreateRider();
-            }
-            throw new ArgumentOutOfRangeException("Нельзя получить юнита с такой ролью");
         }
 
         public void AddUnit(IUnit unit)

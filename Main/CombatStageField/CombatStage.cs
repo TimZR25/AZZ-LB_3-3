@@ -36,46 +36,28 @@ namespace AZZ_LB_3_3.Main.CombatStage
 
         public PriorityQueue<IUnit, int> UnitsPriorityQueue
         {
-            get
-            {
-                return _unitsPriorityQueue;
-            }
-            private set
-            {
-                _unitsPriorityQueue = value;
-            }
+            get { return _unitsPriorityQueue; }
+            private set { _unitsPriorityQueue = value; }
         }
 
         public List<IPlayer> Players
         {
-            get
-            {
-                return _players;
-            }
-            private set
-            {
-                _players = value;
-            }
+            get { return _players; }
+            set { _players = value; }
         }
 
         public IField GameField
         {
-            get
-            {
-                return _gameField;
-            }
-            private set
-            {
-                _gameField = value;
-            }
+            get { return _gameField; }
+            private set { _gameField = value; }
         }
 
         //проверки для всех свойств
-        public CombatStage(List<IPlayer> players, IField field)
+        public CombatStage(List<IPlayer> players, IField field, IRoundManager roundManager)
         {
             Players = players;
             GameField = field;
-            round = new RoundManager();
+            round = roundManager;
             UnitsPriorityQueue = new();
         }
 
@@ -96,6 +78,5 @@ namespace AZZ_LB_3_3.Main.CombatStage
                 }
             }
         }
-
     }
 }

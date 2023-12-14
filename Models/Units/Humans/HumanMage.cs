@@ -5,7 +5,7 @@
         public HumanMage() 
         {
             Description = "Человек-маг колдует заклинания";
-            _distanceOfMove = 1;
+            DistanceOfMove = 1;
         }
 
         public override string GetSign()
