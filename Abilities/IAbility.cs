@@ -8,7 +8,8 @@ namespace AZZ_LB_3_3
 {
     public interface IAbility
     {
-        string Description { get; set; }
-        decimal Execute(decimal power);
+        public decimal Multiplier { get; }
+        public string Description { get; set; }
+        public decimal Execute(decimal power);
     }
 }

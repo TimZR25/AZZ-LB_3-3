@@ -8,6 +8,7 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
     public class ChargedWeaponStrike
     {
+        public decimal Multiplier => 3;
         public string Description { get; set; }
         public int Сost { get; set; }
 
@@ -19,7 +20,7 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 
         public decimal Execute(decimal power)
         {
-            return power * 3;
+            return power * Multiplier;
         }
     }
 }
