@@ -8,24 +8,19 @@ namespace AZZ_LB_3_3
 {
     class UndeadsFactoryUnits : IAbstractFactoryUnits
     {
-        public Unit CreateArcher()
+        public Unit CreateArcher(IUnitStats unitStats)
         {
-            throw new NotImplementedException();
+            return new UndeadArcher(unitStats);
         }
 
-        public Unit CreateMage()
+        public Unit CreateMage(IUnitStats unitStats)
         {
-            throw new NotImplementedException();
+            return new UndeadMage(unitStats);
         }
 
-        public Unit CreateRider()
+        public Unit CreateWarrior(IUnitStats unitStats)
         {
-            throw new NotImplementedException();
-        }
-
-        public Unit CreateWarrior()
-        {
-            throw new NotImplementedException();
+            return new UndeadWarrior(unitStats);
         }
     }
 }

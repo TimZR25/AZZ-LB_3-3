@@ -2,10 +2,9 @@
 {
     public class OrcRider: Unit
     {
-        public OrcRider()
+        public OrcRider(IUnitStats unitStats)
         {
-            Description = "Орк-наездник рвется в бой";
-            DistanceOfMove = 4;
+            UnitStats = unitStats;
         }
 
         public override string GetSign()

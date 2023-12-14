@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3
 {
-    public interface IUnit : IUnitStats, IModel
+    public interface IUnit : IModel
     {
+        public IUnitStats UnitStats { get; set; }
         public void UseAbility(IActiveAbility ability, ICell cell);
         public bool TryMove(ICell cell, IField field);
     }

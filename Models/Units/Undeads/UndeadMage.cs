@@ -2,10 +2,9 @@
 {
     public class UndeadMage : Unit
     {
-        public UndeadMage() 
+        public UndeadMage(IUnitStats unitStats)
         {
-            Description = "Нежить-маг колдует заклинания";
-            DistanceOfMove = 1;
+            UnitStats = unitStats;
         }
 
         public override string GetSign()

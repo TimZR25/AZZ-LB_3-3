@@ -2,11 +2,11 @@
 {
     public class UndeadWarrior : Unit
     {
-        public UndeadWarrior()
+        public UndeadWarrior(IUnitStats unitStats)
         {
-            Description = "Нежить-воин умело командует войском";
-            DistanceOfMove = 2;
+            UnitStats = unitStats;
         }
+
 
         public override string GetSign()
         {

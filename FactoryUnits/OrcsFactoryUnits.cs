@@ -8,24 +8,19 @@ namespace AZZ_LB_3_3
 {
     public class OrcsFactoryUnits : IAbstractFactoryUnits
     {
-        public Unit CreateArcher()
+        public Unit CreateArcher(IUnitStats unitStats)
         {
-            return new OrcArcher();
+            return new OrcArcher(unitStats);
         }
 
-        public Unit CreateMage()
+        public Unit CreateMage(IUnitStats unitStats)
         {
-            return new OrcMage();
+            return new OrcMage(unitStats);
         }
 
-        public Unit CreateRider()
+        public Unit CreateWarrior(IUnitStats unitStats)
         {
-            return new OrcRider();
-        }
-
-        public Unit CreateWarrior()
-        {
-            return new OrcWarrior();
+            return new OrcWarrior(unitStats);
         }
     }
 }

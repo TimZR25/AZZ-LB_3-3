@@ -4,34 +4,14 @@ namespace AZZ_LB_3_3
 {
     public abstract class Unit : IUnit
     {
-        public decimal CurrentHealth { get; set; }
-        public decimal Power { get; set; }
-        public int Armor { get; set; }
-        public string Description { get; set; }
-        public int DistanceOfMove { get; set; }
-        public int Initiative { get; set; }
-        public int AmountEnergy { get; set; }
-
-        protected List<IPassiveAbility>? _passiveAbilities;
-        protected List<IActiveAbility>? _activeAbilities;
-
+        public IUnitStats UnitStats { get; set; }
         public ICell? CellParent { get; set; }
-
         public EventHandler<IUnit> OnDead { get; set; }
-
-        public string Name => throw new NotImplementedException();
-
-        public decimal MaxHealth => throw new NotImplementedException();
-
-        public int Score => throw new NotImplementedException();
-
-        
-
         public void UseAbility(IActiveAbility ability, ICell cell)
         {
-            if (AmountEnergy < ability.Сost) return;
+            if (UnitStats.AmountEnergy < ability.Сost) return;
 
-            decimal amount = ability.Execute(Power);
+            decimal amount = ability.Execute(UnitStats.Power);
 
             if (amount < 0) cell.Model.ApplyDamage(amount);
             if (amount > 0) ApplyHealth(amount);
@@ -41,7 +21,7 @@ namespace AZZ_LB_3_3
         {
             if (cell?.Model != null) return false;
             
-            if (field.GetNeighborsRadius(CellParent, DistanceOfMove).Contains(cell))
+            if (field.GetNeighborsRadius(CellParent, UnitStats.DistanceOfMove).Contains(cell))
             {
                 CellParent.Model = null;
                 cell.Model = this;
@@ -54,25 +34,25 @@ namespace AZZ_LB_3_3
 
         public void ApplyDamage(decimal damageAmount)
         {
-            decimal multuiplier = (1 - Armor);
-            if (CurrentHealth - (multuiplier * damageAmount) <= 0)
+            decimal multiplier = (1 - UnitStats.Armor);
+            if (UnitStats.CurrentHealth - (multiplier * damageAmount) <= 0)
             {
                 Die();
                 return;
             }
 
-            CurrentHealth -= damageAmount * multuiplier;
+            UnitStats.CurrentHealth -= damageAmount * multiplier;
         }
 
         public void ApplyHealth(decimal healthAmount)
         {
-            if (MaxHealth > CurrentHealth + healthAmount)
+            if (UnitStats.MaxHealth > UnitStats.CurrentHealth + healthAmount)
             {
-                CurrentHealth = MaxHealth;
+                UnitStats.CurrentHealth = UnitStats.MaxHealth;
                 return;
             }
 
-            CurrentHealth += healthAmount;
+            UnitStats.CurrentHealth += healthAmount;
         }
 
         public void Die()

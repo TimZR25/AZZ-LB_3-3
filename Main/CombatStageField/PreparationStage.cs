@@ -21,10 +21,10 @@ namespace AZZ_LB_3_3.Main.CombatStage
 
         private void AddUnit(IDataPlayer player, IUnit unit)
         {
-            if (player.Score > unit.Score)
+            if (player.Score > unit.UnitStats.Score)
             {
 
-                player.Score = player.Score - unit.Score;
+                player.Score = player.Score - unit.UnitStats.Score;
                 _allUnits.Add(unit);
 
             }

@@ -2,10 +2,9 @@
 {
     public class HumanRider : Unit
     {
-        public HumanRider()
+        public HumanRider(IUnitStats unitStats)
         {
-            Description = "Человек-наездник рвется в бой";
-            DistanceOfMove = 4;
+            UnitStats = unitStats;
         }
 
         public override string GetSign()

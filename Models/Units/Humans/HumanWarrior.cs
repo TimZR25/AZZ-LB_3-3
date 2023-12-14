@@ -2,10 +2,9 @@
 {
     public class HumanWarrior : Unit
     {
-        public HumanWarrior()
+        public HumanWarrior(IUnitStats unitStats)
         {
-            Description = "Человек-воин умело командует войском";
-            DistanceOfMove = 2;
+            UnitStats = unitStats;
         }
 
         public override string GetSign()

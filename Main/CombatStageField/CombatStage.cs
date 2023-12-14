@@ -74,7 +74,7 @@ namespace AZZ_LB_3_3.Main.CombatStage
             {
                 foreach (IUnit unit in player.ControlledUnits)
                 {
-                    _unitsPriorityQueue.Enqueue(unit, -unit.Initiative);
+                    _unitsPriorityQueue.Enqueue(unit, -unit.UnitStats.Initiative);
                 }
             }
         }

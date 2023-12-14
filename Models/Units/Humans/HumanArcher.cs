@@ -1,11 +1,12 @@
-﻿namespace AZZ_LB_3_3
+﻿using AZZ_LB_3_3.Abilities;
+
+namespace AZZ_LB_3_3
 {
     public class HumanArcher: Unit
     {
-        public HumanArcher()
+        public HumanArcher(IUnitStats unitStats)
         {
-            Description = "Человек-лучник стреляет из тяжелого лука";
-            DistanceOfMove = 2;
+            UnitStats = unitStats;
         }
 
         public override string GetSign()
