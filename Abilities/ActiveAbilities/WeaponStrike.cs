@@ -11,6 +11,8 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
         public string Description { get; set; }
         public int Сost { get; set; }
 
+        public decimal Multiplier => 3;
+
         public WeaponStrike(int сost) // подумать
         {
             Description = "Обычный удар оружием";
@@ -19,7 +21,7 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 
         public decimal Execute(decimal power)
         {
-            return power * 3;
+            return power * Multiplier;
         }
     }
 }

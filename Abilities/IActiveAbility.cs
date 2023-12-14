@@ -8,7 +8,7 @@ namespace AZZ_LB_3_3.Abilities
 {
     public interface IActiveAbility: IAbility
     {
-        int Сost { get; set; }
+        public int Сost { get; set; }
         //ICell Target(); // доделать
     }
 }

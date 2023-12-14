@@ -10,6 +10,8 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
     {
         public string Description { get; set; }
 
+        public decimal Multiplier => (decimal)1.1;
+
         public UpPowerPassive() // подумать
         {
             Description = "Повышает мощность раз в N ходов";
@@ -17,7 +19,7 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 
         public decimal Execute(decimal power)
         {
-            return power * (decimal)1.1;
+            return power * Multiplier;
         }
     }
 }
