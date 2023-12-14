@@ -8,9 +8,8 @@ namespace AZZ_LB_3_3
 {
     public interface ICell
     {
-        public IModel? Model { get; }
+        public IModel? Model { get; set; }
         public List<ICell> Neighbors { get; set; }
-        public void AddModelInCell(IModel model);
-        public void ClearModelInCell();
+        //public void ClearModelInCell();
     }
 }

@@ -5,7 +5,7 @@
         public OrcMage() 
         {
             Description = "Орк-маг колдует заклинания";
-            _distanceOfMove = 1;
+            DistanceOfMove = 1;
         }
 
         public override string GetSign()

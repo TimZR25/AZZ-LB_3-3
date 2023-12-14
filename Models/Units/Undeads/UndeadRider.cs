@@ -5,7 +5,7 @@
         public UndeadRider()
         {
             Description = "Нежить-наездник рвется в бой";
-            _distanceOfMove = 4;
+            DistanceOfMove = 4;
         }
 
         public override string GetSign()

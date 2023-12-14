@@ -5,7 +5,7 @@
         public HumanRider()
         {
             Description = "Человек-наездник рвется в бой";
-            _distanceOfMove = 4;
+            DistanceOfMove = 4;
         }
 
         public override string GetSign()

@@ -49,7 +49,7 @@ namespace AZZ_LB_3_3
 
         public void AddModel(IModel model, int x, int y)
         {
-            if (_field[x, y].Model == null) _field[x, y].AddModelInCell(model);
+            if (_field[x, y].Model == null) _field[x, y].Model = model;
             else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
         }
 
@@ -66,7 +66,7 @@ namespace AZZ_LB_3_3
         {
             foreach (ICell cell in _field)
             {
-                cell.ClearModelInCell();
+                cell.Model = null;
             }
         }
 
