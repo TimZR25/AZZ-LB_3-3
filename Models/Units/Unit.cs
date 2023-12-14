@@ -19,13 +19,13 @@ namespace AZZ_LB_3_3
 
         public EventHandler<IUnit> OnDead { get; set; }
 
+        public event EventHandler OnTurnCompleted;
+
         public string Name => throw new NotImplementedException();
 
         public decimal MaxHealth => throw new NotImplementedException();
 
         public int Score => throw new NotImplementedException();
-
-        
 
         public void UseAbility(IActiveAbility ability, ICell cell)
         {
@@ -35,6 +35,8 @@ namespace AZZ_LB_3_3
 
             if (amount < 0) cell.Model.ApplyDamage(amount);
             if (amount > 0) ApplyHealth(amount);
+
+            OnTurnCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         public bool TryMove(ICell? cell, IField field)

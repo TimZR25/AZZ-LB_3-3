@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Main.CombatStage
 {
-    public class CombatStage : ICombatStage
+    public class CombatPresenter : ICombatStage
     {
         private PriorityQueue<IUnit, int> _unitsPriorityQueue;
         private List<IPlayer> _players;
         private IField _gameField;
 
-        private List<IUnit> _invokedUnits;
-
+        private List<IUnit> _unitsCanTakeAction;
 
         public IRoundManager round;
 
@@ -52,31 +51,50 @@ namespace AZZ_LB_3_3.Main.CombatStage
             private set { _gameField = value; }
         }
 
-        //проверки для всех свойств
-        public CombatStage(List<IPlayer> players, IField field, IRoundManager roundManager)
+        private IPlayer _currentPlayer;
+        public IPlayer CurrentPlayer
+        {
+            get
+            {
+                return _currentPlayer;
+            }
+            set
+            {
+                foreach (IPlayer player in _players)
+                {
+                    if (player.ControlledUnits.Contains(CurrentUnit)) _currentPlayer = value;
+                }
+            }
+        }
+
+        public IUnit CurrentUnit { get; set; }
+
+
+        public CombatPresenter(List<IPlayer> players, IField field, IRoundManager roundManager)
         {
             Players = players;
             GameField = field;
             round = roundManager;
             UnitsPriorityQueue = new();
-        }
-
-        public void AddUnitList(IUnit unit)
-        {
-            AllUnits.Add(unit);
+            _unitsCanTakeAction = new List<IUnit>(AllUnits);
         }
 
         public void RebuildQueue()
         {
             _unitsPriorityQueue.Clear();
 
-            foreach (IPlayer player in _players)
+            foreach (IUnit unit in _unitsCanTakeAction)
             {
-                foreach (IUnit unit in player.ControlledUnits)
-                {
-                    _unitsPriorityQueue.Enqueue(unit, -unit.Initiative);
-                }
+                _unitsPriorityQueue.Enqueue(unit, -unit.Initiative);
             }
+        }
+
+        public void NextTurn()
+        {
+            if (_unitsPriorityQueue.Count <= 0) RebuildQueue();
+
+            CurrentUnit = _unitsPriorityQueue.Dequeue();
+            _unitsCanTakeAction.Remove(CurrentUnit);
         }
     }
 }

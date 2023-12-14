@@ -10,6 +10,5 @@ namespace AZZ_LB_3_3
     {
         public IModel? Model { get; set; }
         public List<ICell> Neighbors { get; set; }
-        //public void ClearModelInCell();
     }
 }
