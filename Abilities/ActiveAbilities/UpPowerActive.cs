@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
-    public class UpPowerActive
+    public class UpPowerActive : IActiveAbility
     {
         public string Description { get; set; }
         public int Сost { get; set; }
+
+        public decimal Multiplier => (decimal)0.3;
 
         public UpPowerActive(int сost) // подумать
         {

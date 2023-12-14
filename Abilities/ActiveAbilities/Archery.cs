@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
-    public class Archery
+    public class Archery : IActiveAbility
     {
+        public decimal Multiplier => 2;
         public string Description { get; set; }
         public int Сost { get; set; }
 
@@ -19,7 +20,7 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 
         public decimal Execute(decimal power)
         {
-            return power * 2;
+            return power * Multiplier;
         }
     }
 }
