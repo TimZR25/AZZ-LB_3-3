@@ -88,7 +88,7 @@ namespace AZZ_LB_3_3
 
         public void SkipTurn() {
             //ограничение на движение
-            //проверка
+
             if (MaxEnergy >= AmountEnergy + MaxEnergy * (decimal)0.2) { AmountEnergy = MaxEnergy; }
             else { AmountEnergy += + MaxEnergy * (decimal)0.2; }
 
