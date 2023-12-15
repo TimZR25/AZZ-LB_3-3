@@ -21,7 +21,7 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 
         public decimal Execute(decimal power)
         {
-            return power * Multiplier;
+            return -power * Multiplier;
         }
     }
 }

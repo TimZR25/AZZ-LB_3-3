@@ -25,8 +25,6 @@ namespace AZZ_LB_3_3
 
         public decimal MaxHealth => throw new NotImplementedException();
 
-        public int Score => throw new NotImplementedException();
-
         public void UseAbility(IActiveAbility ability, ICell cell)
         {
             if (AmountEnergy < ability.Сost) return;

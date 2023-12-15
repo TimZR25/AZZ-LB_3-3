@@ -12,14 +12,17 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 
         public decimal Multiplier => (decimal)1.1;
 
-        public UpPowerPassive() // подумать
+        public IUnit Unit { get; set; }
+
+        public UpPowerPassive(IUnit unit)
         {
-            Description = "Повышает мощность раз в N ходов";
+            Unit = unit;
+            Description = "Повышает мощность каждый ход";
         }
 
-        public decimal Execute(decimal power)
+        public void Execute()
         {
-            return power * Multiplier;
+            Unit.Power = Unit.Power * Multiplier;
         }
     }
 }
