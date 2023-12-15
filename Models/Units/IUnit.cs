@@ -13,6 +13,6 @@ namespace AZZ_LB_3_3
         public bool TryMove(ICell cell, IField field);
 
         public event EventHandler OnTurnCompleted;
-        public void EndTurn()
+        public void SkipTurn();
     }
 }
