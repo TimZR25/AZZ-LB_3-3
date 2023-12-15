@@ -46,11 +46,5 @@ namespace AZZ_LB_3_3
         {
             return _sign + " ";
         }
-
-        //public void ClearModelInCell()
-        //{
-        //    Model = null;
-        //    _sign = _startSign;
-        //}
     }
 }
