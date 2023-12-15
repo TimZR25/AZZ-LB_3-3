@@ -17,7 +17,7 @@ namespace AZZ_LB_3_3
 
         public ICell? CellParent { get; set; }
 
-        public EventHandler<IUnit> OnDead { get; set; }
+        public event EventHandler<IUnit> OnDead;
 
         public event EventHandler OnTurnCompleted;
 
