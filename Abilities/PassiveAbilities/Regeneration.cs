@@ -22,7 +22,7 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 
         public void Execute()
         {
-            if (Unit.Power * Multiplier + Unit.CurrentHealth > Unit.MaxHealth) { Unit.CurrentHealth = Unit.MaxHealth; }
+            if (Unit.Power * Multiplier + Unit.CurrentHealth >= Unit.MaxHealth) { Unit.CurrentHealth = Unit.MaxHealth; }
             else { Unit.CurrentHealth = Unit.Power * Multiplier + Unit.CurrentHealth; }
         }
     }

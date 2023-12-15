@@ -12,6 +12,8 @@ namespace AZZ_LB_3_3
         public int Initiative { get; set; }
         public int AmountEnergy { get; set; }
 
+
+
         protected List<IPassiveAbility>? _passiveAbilities;
         protected List<IActiveAbility>? _activeAbilities;
 
@@ -25,7 +27,7 @@ namespace AZZ_LB_3_3
 
         public decimal MaxHealth => throw new NotImplementedException();
 
-        public void UseAbility(IActiveAbility ability, ICell cell)
+        public void UseActiveAbility(IActiveAbility ability, ICell cell)
         {
             if (AmountEnergy < ability.Сost) return;
 
@@ -83,5 +85,14 @@ namespace AZZ_LB_3_3
         }
 
         public abstract string GetSign();
+
+        public void SkipTurn() {
+            //ограничение на движение
+            //проверка
+            if (MaxEnergy >= AmountEnergy + MaxEnergy * (decimal)0.2) { AmountEnergy = MaxEnergy; }
+            else { AmountEnergy += + MaxEnergy * (decimal)0.2; }
+
+            OnTurnCompleted?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
