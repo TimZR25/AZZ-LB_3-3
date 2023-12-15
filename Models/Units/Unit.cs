@@ -19,7 +19,7 @@ namespace AZZ_LB_3_3
 
         public ICell? CellParent { get; set; }
 
-        public EventHandler<IUnit> OnDead { get; set; }
+        public event EventHandler OnDead;
 
         public event EventHandler OnTurnCompleted;
 
@@ -85,7 +85,7 @@ namespace AZZ_LB_3_3
         {
             CellParent.Model = null;
 
-            OnDead?.Invoke(this, this);
+            OnDead?.Invoke(this, EventArgs.Empty);
         }
 
         public abstract string GetSign();
