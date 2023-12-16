@@ -19,5 +19,7 @@ namespace AZZ_LB_3_3
         public void ApplyDamage(decimal damageAmount);
         public void ApplyHealth(decimal healthAmount);
         public void Die();
+        public void ApplyPassiveAbilities();
+
     }
 }

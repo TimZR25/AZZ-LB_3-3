@@ -12,7 +12,7 @@ namespace AZZ_LB_3_3.Main.CombatStage
 
         public RoundManager()
         {
-            Round = 1;
+            Round = 0;
         }
 
         public void NextRound()

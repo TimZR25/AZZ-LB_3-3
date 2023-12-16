@@ -47,12 +47,9 @@ namespace AZZ_LB_3_3.Main.CombatStageField
         }
         public void ChangeUnitsCanTakeAction()
         {
-            foreach (IPlayer player in Players)
+            foreach (IUnit unit in GetAllUnits())
             {
-                foreach (IUnit unit in player.ControlledUnits)
-                {
-                    UnitsCanTakeAction.Add(unit);
-                }
+                UnitsCanTakeAction.Add(unit);
             }
         }
         public void RebuildQueue()
@@ -65,17 +62,43 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
         }
 
-        public void NextTurn()
+        public void NextTurn() // запускает сразу(0 раунда)
         {
-            if (UnitsPriorityQueue.Count <= 0)
+            if (UnitsPriorityQueue.Count == 0)
             {
+                if (RoundManager.Round != 0) { ApplyAllPassiveAbilities(); }
+
                 RoundManager.NextRound();
+
+                ChangeUnitsCanTakeAction();
 
                 RebuildQueue();
             }
 
+
             CurrentUnit = UnitsPriorityQueue.Dequeue();
-            UnitsCanTakeAction.Remove(CurrentUnit);
+            //UnitsCanTakeAction.Remove(CurrentUnit); вынести в метод окончания хода
+        }
+
+        public void ApplyAllPassiveAbilities() {
+            foreach (IUnit unit in GetAllUnits()) {
+                unit.ApplyPassiveAbilities();
+            }
+        }
+
+        public List<IUnit> GetAllUnits()
+        {
+            List<IUnit> result = new List<IUnit>();
+
+            foreach (IPlayer player in Players)
+            {
+                foreach (IUnit unit in player.ControlledUnits)
+                {
+                    result.Add(unit);
+                }
+            }
+
+            return result;
         }
 
     }
