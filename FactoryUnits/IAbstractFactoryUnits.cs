@@ -8,12 +8,11 @@ namespace AZZ_LB_3_3
 {
     public interface IAbstractFactoryUnits
     {
-        public Unit CreateWarrior();
+        public Unit CreateWarrior(IUnitStats unitStats);
 
-        public Unit CreateMage();
+        public Unit CreateMage(IUnitStats unitStats);
 
-        public Unit CreateArcher();
+        public Unit CreateArcher(IUnitStats unitStats);
 
-        public Unit CreateRider();
     }
 }

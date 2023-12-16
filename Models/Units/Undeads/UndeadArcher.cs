@@ -2,15 +2,9 @@
 {
     public class UndeadArcher : Unit
     {
-        public UndeadArcher()
+        public UndeadArcher(IUnitStats stats)
         {
-            Description = "Нежить-лучник стреляет из тяжелого лука";
-            DistanceOfMove = 2;
-        }
-
-        public override string GetSign()
-        {
-            return "OA";
+            Stats = stats;
         }
     }
 }

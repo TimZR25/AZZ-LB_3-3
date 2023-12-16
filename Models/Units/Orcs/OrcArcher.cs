@@ -2,15 +2,9 @@
 {
     public class OrcArcher: Unit
     {
-        public OrcArcher()
+        public OrcArcher(IUnitStats stats)
         {
-            Description = "Орк-лучник стреляет из тяжелого лука";
-            DistanceOfMove = 2;
-        }
-
-        public override string GetSign()
-        {
-            return "OA";
+            Stats = stats;
         }
     }
 }

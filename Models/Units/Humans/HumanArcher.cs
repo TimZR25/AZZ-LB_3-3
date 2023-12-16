@@ -2,15 +2,9 @@
 {
     public class HumanArcher: Unit
     {
-        public HumanArcher()
+        public HumanArcher(IUnitStats stats)
         {
-            Description = "Человек-лучник стреляет из тяжелого лука";
-            DistanceOfMove = 2;
-        }
-
-        public override string GetSign()
-        {
-            return "OA";
+            Stats = stats;
         }
     }
 }
