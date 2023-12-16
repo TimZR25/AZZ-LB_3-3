@@ -8,18 +8,22 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 {
     public class Regeneration : IPassiveAbility
     {
+        public IUnit Unit { get; set; }
+
         public string Description { get; set; }
 
         public decimal Multiplier => (decimal)1.2;
 
-        public Regeneration() // подумать
+        public Regeneration(IUnit unit)
         {
-            Description = "Регенерация";
+            Unit = unit;
+            Description = "Регенерация здоровья каждый ход";
         }
 
-        public decimal Execute(decimal power)
+        public void Execute()
         {
-            return power * Multiplier;
+            if (Unit.Power * Multiplier + Unit.CurrentHealth >= Unit.MaxHealth) { Unit.CurrentHealth = Unit.MaxHealth; }
+            else { Unit.CurrentHealth = Unit.Power * Multiplier + Unit.CurrentHealth; }
         }
     }
 }
