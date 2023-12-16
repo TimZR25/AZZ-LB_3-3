@@ -91,5 +91,13 @@ namespace AZZ_LB_3_3
 
             OnTurnCompleted?.Invoke(this, EventArgs.Empty);
         }
+
+        public void ApplyPassiveAbilities() {
+            if (Stats.PassiveAbilities.Count <= 1 || Stats.PassiveAbilities == null) { return; }
+
+            foreach (IPassiveAbility passiveAbility in Stats.PassiveAbilities) {
+                passiveAbility.Execute();
+            }
+        }
     }
 }
