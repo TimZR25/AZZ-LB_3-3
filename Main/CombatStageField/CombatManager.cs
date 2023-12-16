@@ -61,7 +61,7 @@ namespace AZZ_LB_3_3.Main.CombatStageField
 
             foreach (IUnit unit in UnitsCanTakeAction)
             {
-                UnitsPriorityQueue.Enqueue(unit, -unit.Initiative);
+                UnitsPriorityQueue.Enqueue(unit, -unit.Stats.Initiative);
             }
         }
 
