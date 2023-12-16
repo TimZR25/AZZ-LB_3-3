@@ -10,19 +10,18 @@ namespace AZZ_LB_3_3
 {
     public class Cell : ICell
     {
-
-        private IModel? _model;
-
-        public IModel? Model
+        private IUnit? _unit;
+        public IObstacle? Obstacle { get; set; }
+        public List<ICell> Neighbors { get; set; }       
+        public IUnit? Unit
         {
-            get { return _model; }
+            get { return _unit; }
             set
             {
-                _model = value;
-                _model.CellParent = this;
+                _unit = value;
+                _unit.CellParent = this;
             }
         }
-        public List<ICell> Neighbors { get; set; }       
 
         public Cell(int x, int y)
         {

@@ -10,10 +10,14 @@ namespace AZZ_LB_3_3
     public interface IUnit : IModel
     {
         public IUnitStats Stats { get; set; }
+        public ICell? CellParent { get; set; }
+        public event EventHandler OnTurnCompleted;
+        public event EventHandler<IUnit> OnDead;
         public void UseActiveAbility(IActiveAbility ability, ICell cell);
         public bool TryMove(ICell cell, IField field);
-
-        public event EventHandler OnTurnCompleted;
         public void SkipTurn();
+        public void ApplyDamage(decimal damageAmount);
+        public void ApplyHealth(decimal healthAmount);
+        public void Die();
     }
 }

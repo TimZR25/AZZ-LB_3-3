@@ -8,7 +8,8 @@ namespace AZZ_LB_3_3
 {
     public interface IField
     {
-        void AddModel(IModel model, int x, int y);
+        public void AddUnit(IUnit model, int x, int y);
+        public void AddObstacle(IObstacle model, int x, int y);
         public void ClearField();
 
         public List<ICell> GetNeighborsRadius(ICell cell, int radius);

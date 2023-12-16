@@ -9,25 +9,9 @@ namespace AZZ_LB_3_3
 {
     public class Field : IField
     {
-        public IFieldPrint fieldPrint { get; private set; }
-
         private ICell[,] _field;
 
         private int _sizeSide;
-
-        private static Field? instance;
-
-        public void FieldOut()
-        {
-            for (int x = 0; x < _field.GetLength(0); x++)
-            {
-                for (int y = 0; y < _field.GetLength(1); y++)
-                {
-                    Console.Write(_field[x, y]);
-                }
-                Console.WriteLine();
-            }
-        }
 
         public Field(int sizeSide)
         {
@@ -47,10 +31,21 @@ namespace AZZ_LB_3_3
             AddNeighborsAll();
         }
 
-        public void AddModel(IModel model, int x, int y)
+        public void AddUnit(IUnit unit, int x, int y)
         {
-            if (_field[x, y].Model == null) _field[x, y].Model = model;
-            else { Console.WriteLine("Нельзя поставить модель в занятое поле\n"); }
+            if (_field[x, y].Unit == null && _field[x, y].Obstacle == null) _field[x, y].Unit = unit;
+            else 
+            {
+                throw new ArgumentException("Клетка уже занята");
+            }
+        }
+        public void AddObstacle(IObstacle obstacle, int x, int y)
+        {
+            if (_field[x, y].Unit == null && _field[x, y].Obstacle == null) _field[x, y].Obstacle = obstacle;
+            else
+            {
+                throw new ArgumentException("Клетка уже занята");
+            }
         }
 
         public ICell? GetCell(int x, int y)
@@ -66,7 +61,8 @@ namespace AZZ_LB_3_3
         {
             foreach (ICell cell in _field)
             {
-                cell.Model = null;
+                cell.Unit = null;
+                cell.Obstacle = null;
             }
         }
 
@@ -104,7 +100,6 @@ namespace AZZ_LB_3_3
         public List<ICell> GetNeighborsRadius(ICell cell, int radius)
         {
             if (cell == null) throw new ArgumentNullException("Пустая ссылка на клетку");
-            if (radius == null) throw new ArgumentNullException("Пустая ссылка на радиус");
             if (radius < 1) throw new ArgumentOutOfRangeException("Радиус не может быть меньше 1");
 
             HashSet<ICell> result = new HashSet<ICell>(cell.Neighbors);
