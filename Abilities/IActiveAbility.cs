@@ -9,6 +9,7 @@ namespace AZZ_LB_3_3.Abilities
     public interface IActiveAbility: IAbility
     {
         public int Сost { get; set; }
-        //ICell Target(); // доделать
+
+        public decimal Execute(decimal power);
     }
 }

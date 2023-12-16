@@ -10,6 +10,5 @@ namespace AZZ_LB_3_3
     {
         public decimal Multiplier { get; }
         public string Description { get; set; }
-        public decimal Execute(decimal power);
     }
 }

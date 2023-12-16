@@ -9,8 +9,10 @@ namespace AZZ_LB_3_3
 {
     public interface IUnit : IUnitStats, IModel
     {
-        public void UseAbility(IActiveAbility ability, ICell cell);
+        public void UseActiveAbility(IActiveAbility ability, ICell cell);
         public bool TryMove(ICell cell, IField field);
+
         public event EventHandler OnTurnCompleted;
+        public void SkipTurn();
     }
 }

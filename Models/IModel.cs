@@ -8,7 +8,7 @@ namespace AZZ_LB_3_3
 {
     public interface IModel
     {
-        public EventHandler<IUnit> OnDead { get; set; }
+        public event EventHandler OnDead;
 
         public ICell? CellParent { get; set; }
         public string GetSign();

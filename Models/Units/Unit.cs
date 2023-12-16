@@ -12,6 +12,8 @@ namespace AZZ_LB_3_3
         public int Initiative { get; set; }
         public int AmountEnergy { get; set; }
 
+
+
         protected List<IPassiveAbility>? _passiveAbilities;
         protected List<IActiveAbility>? _activeAbilities;
 
@@ -19,15 +21,16 @@ namespace AZZ_LB_3_3
 
         public event EventHandler<IUnit> OnDead;
 
+
         public event EventHandler OnTurnCompleted;
+
+        private bool isMoved = false;
 
         public string Name => throw new NotImplementedException();
 
         public decimal MaxHealth => throw new NotImplementedException();
 
-        public int Score => throw new NotImplementedException();
-
-        public void UseAbility(IActiveAbility ability, ICell cell)
+        public void UseActiveAbility(IActiveAbility ability, ICell cell)
         {
             if (AmountEnergy < ability.Сost) return;
 
@@ -41,6 +44,7 @@ namespace AZZ_LB_3_3
 
         public bool TryMove(ICell? cell, IField field)
         {
+            if (isMoved == true) throw new Exception("Юнит уже походил");
             if (cell?.Model != null) return false;
             
             if (field.GetNeighborsRadius(CellParent, DistanceOfMove).Contains(cell))
@@ -48,6 +52,7 @@ namespace AZZ_LB_3_3
                 CellParent.Model = null;
                 cell.Model = this;
 
+                isMoved = true;
                 return true;
             }
 
@@ -81,9 +86,20 @@ namespace AZZ_LB_3_3
         {
             CellParent.Model = null;
 
-            OnDead?.Invoke(this, this);
+            OnDead?.Invoke(this, EventArgs.Empty);
         }
 
         public abstract string GetSign();
+
+        public void SkipTurn() {
+
+            if (isMoved = false)
+            {
+                if (MaxEnergy >= AmountEnergy + MaxEnergy * (decimal)0.2) { AmountEnergy = MaxEnergy; }
+                else { AmountEnergy += MaxEnergy * (decimal)0.2; }
+            }
+
+            OnTurnCompleted?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
