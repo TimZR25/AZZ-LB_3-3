@@ -10,9 +10,6 @@ namespace AZZ_LB_3_3
 {
     public class Cell : ICell
     {
-        private const string _startSign = "..";
-
-        private string _sign;
 
         private IModel? _model;
 
@@ -22,29 +19,14 @@ namespace AZZ_LB_3_3
             set
             {
                 _model = value;
-
-                if (value == null)
-                {
-                    _sign = _startSign;
-                    return;
-                }
-
                 _model.CellParent = this;
-                _sign = value.GetSign();
             }
         }
-
         public List<ICell> Neighbors { get; set; }       
 
         public Cell(int x, int y)
         {
             Neighbors = new List<ICell>();
-            _sign = _startSign;
-        }
-
-        public override string ToString()
-        {
-            return _sign + " ";
         }
     }
 }

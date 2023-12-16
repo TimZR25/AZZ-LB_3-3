@@ -22,7 +22,7 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
 
         public void Execute()
         {
-            Unit.Power = Unit.Power * Multiplier;
+            Unit.Stats.Power = Unit.Stats.Power * Multiplier;
         }
     }
 }
