@@ -2,15 +2,9 @@
 {
     public class HumanMage: Unit
     {
-        public HumanMage() 
+        public HumanMage(IUnitStats stats)
         {
-            Description = "Человек-маг колдует заклинания";
-            DistanceOfMove = 1;
-        }
-
-        public override string GetSign()
-        {
-            return "OM";
+            Stats = stats;
         }
     }
 }

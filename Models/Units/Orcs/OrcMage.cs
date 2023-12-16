@@ -2,15 +2,9 @@
 {
     public class OrcMage: Unit
     {
-        public OrcMage() 
+        public OrcMage(IUnitStats stats)
         {
-            Description = "Орк-маг колдует заклинания";
-            DistanceOfMove = 1;
-        }
-
-        public override string GetSign()
-        {
-            return "OM";
+            Stats = stats;
         }
     }
 }

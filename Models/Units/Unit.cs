@@ -4,18 +4,8 @@ namespace AZZ_LB_3_3
 {
     public abstract class Unit : IUnit
     {
-        public decimal CurrentHealth { get; set; }
-        public decimal Power { get; set; }
-        public int Armor { get; set; }
-        public string Description { get; set; }
-        public int DistanceOfMove { get; set; }
-        public int Initiative { get; set; }
-        public int AmountEnergy { get; set; }
 
-
-
-        protected List<IPassiveAbility>? _passiveAbilities;
-        protected List<IActiveAbility>? _activeAbilities;
+        public IUnitStats Stats { get; set; }
 
         public ICell? CellParent { get; set; }
 
@@ -26,15 +16,13 @@ namespace AZZ_LB_3_3
 
         private bool isMoved = false;
 
-        public string Name => throw new NotImplementedException();
-
-        public decimal MaxHealth => throw new NotImplementedException();
-
         public void UseActiveAbility(IActiveAbility ability, ICell cell)
         {
-            if (AmountEnergy < ability.Сost) return;
+            if (Stats.CurrentEnergy < ability.Сost) return;
 
-            decimal amount = ability.Execute(Power);
+            isMoved = false;
+
+            decimal amount = ability.Execute(Stats.Power);
 
             if (amount < 0) cell.Model.ApplyDamage(amount);
             if (amount > 0) ApplyHealth(amount);
@@ -47,7 +35,7 @@ namespace AZZ_LB_3_3
             if (isMoved == true) throw new Exception("Юнит уже походил");
             if (cell?.Model != null) return false;
             
-            if (field.GetNeighborsRadius(CellParent, DistanceOfMove).Contains(cell))
+            if (field.GetNeighborsRadius(CellParent, Stats.DistanceOfMove).Contains(cell))
             {
                 CellParent.Model = null;
                 cell.Model = this;
@@ -61,42 +49,44 @@ namespace AZZ_LB_3_3
 
         public void ApplyDamage(decimal damageAmount)
         {
-            decimal multuiplier = (1 - Armor);
-            if (CurrentHealth - (multuiplier * damageAmount) <= 0)
+            decimal multiplier = (1 - Stats.Armor);
+            if (Stats.CurrentHealth - (multiplier * damageAmount) <= 0)
             {
                 Die();
                 return;
             }
 
-            CurrentHealth -= damageAmount * multuiplier;
+            Stats.CurrentHealth -= damageAmount * multiplier;
         }
 
         public void ApplyHealth(decimal healthAmount)
         {
-            if (MaxHealth > CurrentHealth + healthAmount)
+            if (Stats.MaxHealth > Stats.CurrentHealth + healthAmount)
             {
-                CurrentHealth = MaxHealth;
+                Stats.CurrentHealth = Stats.MaxHealth;
                 return;
             }
 
-            CurrentHealth += healthAmount;
+            Stats.CurrentHealth += healthAmount;
         }
 
         public void Die()
         {
             CellParent.Model = null;
 
-            OnDead?.Invoke(this, EventArgs.Empty);
+            OnDead?.Invoke(this, this);
         }
-
-        public abstract string GetSign();
 
         public void SkipTurn() {
 
             if (isMoved = false)
             {
-                if (MaxEnergy >= AmountEnergy + MaxEnergy * (decimal)0.2) { AmountEnergy = MaxEnergy; }
-                else { AmountEnergy += MaxEnergy * (decimal)0.2; }
+                if (Stats.MaxEnergy >= Stats.CurrentEnergy + Stats.MaxEnergy * (decimal)0.2) { Stats.CurrentEnergy = Stats.MaxEnergy; }
+                else { Stats.CurrentEnergy += Stats.MaxEnergy * (decimal)0.2; }
+            }
+            else
+            {
+                isMoved = false;
             }
 
             OnTurnCompleted?.Invoke(this, EventArgs.Empty);
