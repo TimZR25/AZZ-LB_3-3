@@ -9,6 +9,6 @@ namespace AZZ_LB_3_3
 {
     public interface IObstacle : IModel
     {
-
+        public string Description { get; set; }
     }
 }

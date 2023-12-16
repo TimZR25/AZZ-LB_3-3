@@ -24,7 +24,7 @@ namespace AZZ_LB_3_3
 
             decimal amount = ability.Execute(Stats.Power);
 
-            if (amount < 0) cell.Model.ApplyDamage(amount);
+            if (amount < 0) cell.Unit.ApplyDamage(amount);
             if (amount > 0) ApplyHealth(amount);
 
             OnTurnCompleted?.Invoke(this, EventArgs.Empty);
@@ -33,12 +33,12 @@ namespace AZZ_LB_3_3
         public bool TryMove(ICell? cell, IField field)
         {
             if (isMoved == true) throw new Exception("Юнит уже походил");
-            if (cell?.Model != null) return false;
+            if (cell?.Unit != null) return false;
             
             if (field.GetNeighborsRadius(CellParent, Stats.DistanceOfMove).Contains(cell))
             {
-                CellParent.Model = null;
-                cell.Model = this;
+                CellParent.Unit = null;
+                cell.Unit = this;
 
                 isMoved = true;
                 return true;
@@ -72,7 +72,7 @@ namespace AZZ_LB_3_3
 
         public void Die()
         {
-            CellParent.Model = null;
+            CellParent.Unit = null;
 
             OnDead?.Invoke(this, this);
         }

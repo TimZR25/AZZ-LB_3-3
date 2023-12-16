@@ -6,26 +6,17 @@ using System.Threading.Tasks;
 
 namespace AZZ_LB_3_3.Models.Obstacles
 {
-    public abstract class Obstacle : IObstacle
+    public class Obstacle : IObstacle
     {
-        public EventHandler<IUnit> OnDead { get; set; }
-        public ICell? CellParent { get; set; }
-
-        public void ApplyDamage(decimal damageAmount)
+        private string _description;
+        public string Description 
         {
-            throw new NotImplementedException();
+            get { return _description; }
+            set { _description = value; }
         }
-
-        public void ApplyHealth(decimal healthAmount)
+        public Obstacle(string description)
         {
-            throw new NotImplementedException();
+            Description = description;
         }
-
-        public void Die()
-        {
-            throw new NotImplementedException();
-        }
-
-        public abstract string GetSign();
     }
 }
