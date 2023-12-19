@@ -62,7 +62,14 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
         }
 
-        public void NextTurn() // запускает сразу(0 раунда)
+        private void SubscribeUnitEvent() {
+            foreach (IUnit unit in GetAllUnits()) {
+                unit.OnTurnCompleted += NextTurn;
+            }
+        }
+
+
+        public void NextTurn(object sender, EventArgs args) // запускает сразу(0 раунда)
         {
             if (UnitsPriorityQueue.Count == 0)
             {
@@ -76,9 +83,14 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
 
 
+            UnitsCanTakeAction.Remove(CurrentUnit);
             CurrentUnit = UnitsPriorityQueue.Dequeue();
-            //UnitsCanTakeAction.Remove(CurrentUnit); вынести в метод окончания хода
+            ChangeCurrentPlayer();
         }
+
+        public IPlayer MessageLosePlayer() {//проверка
+            return CurrentPlayer;
+        }//вывод информации об проигрыше игрока
 
         public void ApplyAllPassiveAbilities() {
             foreach (IUnit unit in GetAllUnits()) {

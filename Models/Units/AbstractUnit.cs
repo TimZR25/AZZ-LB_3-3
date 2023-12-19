@@ -79,7 +79,7 @@ namespace AZZ_LB_3_3
 
         public void SkipTurn() {
 
-            if (isMoved = false)
+            if (isMoved == false)
             {
                 if (Stats.MaxEnergy >= Stats.CurrentEnergy + Stats.MaxEnergy * (decimal)0.2) { Stats.CurrentEnergy = Stats.MaxEnergy; }
                 else { Stats.CurrentEnergy += Stats.MaxEnergy * (decimal)0.2; }
