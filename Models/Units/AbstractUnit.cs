@@ -12,7 +12,7 @@ namespace AZZ_LB_3_3
         public event EventHandler<IUnit> OnDead;
 
 
-        public event EventHandler OnTurnCompleted;
+        public event EventHandler<IUnit> OnTurnCompleted;
 
         private bool isMoved = false;
 
@@ -27,7 +27,7 @@ namespace AZZ_LB_3_3
             if (amount < 0) cell.Unit.ApplyDamage(amount);
             if (amount > 0) ApplyHealth(amount);
 
-            OnTurnCompleted?.Invoke(this, EventArgs.Empty);
+            OnTurnCompleted?.Invoke(this, this);
         }
 
         public bool TryMove(ICell? cell, IField field)
@@ -89,7 +89,7 @@ namespace AZZ_LB_3_3
                 isMoved = false;
             }
 
-            OnTurnCompleted?.Invoke(this, EventArgs.Empty);
+            OnTurnCompleted?.Invoke(this, this);
         }
 
         public void ApplyPassiveAbilities() {
