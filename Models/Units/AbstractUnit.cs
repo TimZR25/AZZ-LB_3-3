@@ -21,20 +21,23 @@ namespace AZZ_LB_3_3
             if (Stats.CurrentEnergy < ability.Cost) return;
 
             isMoved = false;
+            if(cell.Unit != null)
+            {
+                decimal amount = ability.Execute(Stats.Power);
+                if (amount < 0) cell.Unit.ApplyDamage(amount);
+                if (amount > 0) cell.Unit.ApplyHealth(amount);
 
-            decimal amount = ability.Execute(Stats.Power);
-
-            if (amount < 0) cell.Unit.ApplyDamage(amount);
-            if (amount > 0) ApplyHealth(amount);
+            }
 
             OnTurnCompleted?.Invoke(this, this);
         }
 
         public bool TryMove(ICell? cell, IField field)
         {
-            if (isMoved == true) throw new Exception("Юнит уже походил");
+            if (isMoved == true) return false; ;
             if (cell?.Unit != null) return false;
-            
+            if (cell?.Obstacle != null) return false;
+
             if (field.GetNeighborsRadius(CellParent, Stats.DistanceOfMove).Contains(cell))
             {
                 CellParent.Unit = null;
