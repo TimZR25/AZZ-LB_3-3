@@ -11,17 +11,17 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
         public string Description { get; set; }
         public int Сost { get; set; }
 
-        public decimal Multiplier => 3;
+        public decimal Coefficient => 3;
 
-        public Heal(int сost) // подумать
+        public Heal(int сost, string description)
         {
-            Description = "Лечит существо";
+            Description = description;
             Сost = сost;
         }
 
         public decimal Execute(decimal power)
         {
-            return power * Multiplier;
+            return power * Coefficient;
         }
     }
 }

@@ -11,17 +11,17 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
         public string Description { get; set; }
         public int Сost { get; set; }
 
-        public decimal Multiplier => 4;
+        public decimal Coefficient => 4;
 
-        public ExplosiveArchery(int сost) // подумать
+        public ExplosiveArchery(int сost, string description)
         {
-            Description = "Взрывной выстрел из лука";
+            Description = description;
             Сost = сost;
         }
 
         public decimal Execute(decimal power)
         {
-            return -power * Multiplier;
+            return -power * Coefficient;
         }
     }
 }

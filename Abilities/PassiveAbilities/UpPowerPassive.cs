@@ -10,19 +10,19 @@ namespace AZZ_LB_3_3.Abilities.PassiveAbilities
     {
         public string Description { get; set; }
 
-        public decimal Multiplier => (decimal)1.1;
+        public decimal Coefficient => (decimal)1.1;
 
         public IUnit Unit { get; set; }
 
-        public UpPowerPassive(IUnit unit)
+        public UpPowerPassive(IUnit unit, string description)
         {
             Unit = unit;
-            Description = "Повышает мощность каждый ход";
+            Description = description;
         }
 
         public void Execute()
         {
-            Unit.Stats.Power = Unit.Stats.Power * Multiplier;
+            Unit.Stats.Power = Unit.Stats.Power * Coefficient;
         }
     }
 }
