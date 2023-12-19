@@ -13,6 +13,7 @@ namespace AZZ_LB_3_3
 
         private int _sizeSide;
 
+
         public Field(int sizeSide)
         {
             _sizeSide = sizeSide;

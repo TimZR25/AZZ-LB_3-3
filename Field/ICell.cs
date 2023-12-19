@@ -10,6 +10,6 @@ namespace AZZ_LB_3_3
     {
         public IObstacle? Obstacle { get; set; }
         public IUnit? Unit { get; set; }
-        public List<ICell> Neighbors { get; set; }
+        public List<ICell> Neighbors { get; }
     }
 }
