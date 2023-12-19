@@ -40,7 +40,7 @@ namespace AZZ_LB_3_3
 
 
             ICell? cell = field.GetCell(4, 4);
-            if (cell?.Model is Unit unit) // подумать убрать проверку на тип
+            if (cell?.Model is AbstractUnit unit) // подумать убрать проверку на тип
             {
                 if (unit.TryMove(field.GetCell(4, 7), field) == false)
                     Console.WriteLine("Упс клетка занята");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AZZ_LB_3_3.Models.Units;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,10 @@ namespace AZZ_LB_3_3.Main.PlayerField
             unit.OnDead -= RemoveUnit;
 
             ControlledUnits.Remove(unit);
+        }
+
+        public IUnit CreateUnit(IUnitStats stats) {
+            return new Unit(stats);
         }
     }
 }
