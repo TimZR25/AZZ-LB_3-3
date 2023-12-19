@@ -8,17 +8,17 @@ namespace AZZ_LB_3_3
 {
     public class HumansFactoryUnits : IAbstractFactoryUnits
     {
-        public Unit CreateArcher(IUnitStats unitStats)
+        public AbstractUnit CreateArcher(IUnitStats unitStats)
         {
             return new HumanArcher(unitStats);
         }
 
-        public Unit CreateMage(IUnitStats unitStats)
+        public AbstractUnit CreateMage(IUnitStats unitStats)
         {
             return new HumanMage(unitStats);
         }
 
-        public Unit CreateWarrior(IUnitStats unitStats)
+        public AbstractUnit CreateWarrior(IUnitStats unitStats)
         {
             return new HumanWarrior(unitStats);
         }
