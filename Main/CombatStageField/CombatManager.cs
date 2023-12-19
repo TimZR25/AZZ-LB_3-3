@@ -17,6 +17,8 @@ namespace AZZ_LB_3_3.Main.CombatStageField
         public List<IUnit> UnitsCanTakeAction { get; set; }
         public PriorityQueue<IUnit, int> UnitsPriorityQueue { get; set; }
         public IPlayer CurrentPlayer { get; set; }
+
+        public event EventHandler<IPlayer> OnPlayerLose;
         public IField GameField
         {
             get { return _gameField; }
@@ -37,6 +39,7 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             GameField = gameField;
             Players = players;
             RoundManager = roundManager;
+            SubscribeUnitEvent();
         }
         public void ChangeCurrentPlayer()
         {
@@ -52,6 +55,7 @@ namespace AZZ_LB_3_3.Main.CombatStageField
                 UnitsCanTakeAction.Add(unit);
             }
         }
+
         public void RebuildQueue()
         {
             UnitsPriorityQueue.Clear();
@@ -62,7 +66,15 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
         }
 
-        public void NextTurn() // запускает сразу(0 раунда)
+        public void SubscribeUnitEvent() {
+            foreach (IUnit unit in GetAllUnits()) {
+                unit.OnTurnCompleted += NextTurn;
+                unit.OnDead += RemoveDeadUnitFromField;
+            }
+        }
+
+
+        public void NextTurn(object sender, IUnit args) // запускает сразу(0 раунда)
         {
             if (UnitsPriorityQueue.Count == 0)
             {
@@ -76,8 +88,35 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
 
 
+            UnitsCanTakeAction.Remove(CurrentUnit);
             CurrentUnit = UnitsPriorityQueue.Dequeue();
-            //UnitsCanTakeAction.Remove(CurrentUnit); вынести в метод окончания хода
+            ChangeCurrentPlayer();
+        }
+
+        public void RemoveDeadUnitFromField(object sender, IUnit eventArgs) {
+            foreach (IPlayer player in Players)
+            {
+                if (player.ControlledUnits.Contains(eventArgs))
+                {
+                    player.ControlledUnits.Remove(eventArgs);
+                    if (player.ControlledUnits.Count == 0)
+                    {
+                        OnPlayerLose.Invoke(this, player);
+                        return;
+                    }
+                    else {
+                        eventArgs.onDead -= RemoveDeadUnitFromField;
+                        eventArgs.onDead -= NextTurn;
+
+                        if (UnitsCanTakeAction.Contains(sender)) { UnitsCanTakeAction.Remove(eventArgs); }
+                        //if (UnitsCanTakeAction.Count == 0) {//умирает последний в очереди
+                        //    ChangeUnitsCanTakeAction();
+                        //} сделать проверку на смерть самого последнего в очереди invoke
+                        RebuildQueue();
+                        return;
+                    }
+                }
+            }
         }
 
         public void ApplyAllPassiveAbilities() {
