@@ -105,8 +105,8 @@ namespace AZZ_LB_3_3.Main.CombatStageField
                         return;
                     }
                     else {
-                        eventArgs.onDead -= RemoveDeadUnitFromField;
-                        eventArgs.onDead -= NextTurn;
+                        eventArgs.OnDead -= RemoveDeadUnitFromField;
+                        eventArgs.OnDead -= NextTurn;
 
                         if (UnitsCanTakeAction.Contains(sender)) { UnitsCanTakeAction.Remove(eventArgs); }
                         //if (UnitsCanTakeAction.Count == 0) {//умирает последний в очереди

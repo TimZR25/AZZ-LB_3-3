@@ -20,6 +20,5 @@ namespace AZZ_LB_3_3.Main.CombatStageField
         public void ChangeCurrentPlayer();
         public void ChangeUnitsCanTakeAction();
         public void RebuildQueue();
-        public void NextTurn(object sender, IUnit args);
     }
 }
