@@ -8,19 +8,19 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
     public class ChargedWeaponStrike
     {
-        public decimal Multiplier => 3;
+        public decimal Coefficient => 3;
         public string Description { get; set; }
         public int Сost { get; set; }
 
-        public ChargedWeaponStrike(int сost) // подумать
+        public ChargedWeaponStrike(int сost, string description)
         {
-            Description = "Заряженный удар оружием";
+            Description = description;
             Сost = сost;
         }
 
         public decimal Execute(decimal power)
         {
-            return -power * Multiplier;
+            return -power * Coefficient;
         }
     }
 }

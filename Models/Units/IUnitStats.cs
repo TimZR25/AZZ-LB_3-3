@@ -16,6 +16,8 @@ namespace AZZ_LB_3_3
 
         public decimal Power { get; set; }
 
+        public int MaxArmor { get; set; }
+
         public int Armor { get; set; }
 
         public int DistanceOfMove { get; set; }
