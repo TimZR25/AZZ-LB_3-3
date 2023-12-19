@@ -18,7 +18,7 @@ namespace AZZ_LB_3_3
 
         public void UseActiveAbility(IActiveAbility ability, ICell cell)
         {
-            if (Stats.CurrentEnergy < ability.Сost) return;
+            if (Stats.CurrentEnergy < ability.Cost) return;
 
             isMoved = false;
 

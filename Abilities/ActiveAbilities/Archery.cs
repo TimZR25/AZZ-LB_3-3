@@ -8,14 +8,24 @@ namespace AZZ_LB_3_3.Abilities.ActiveAbilities
 {
     public class Archery : IActiveAbility
     {
+        private int _cost;
+        private string _description;
         public decimal Coefficient => 2;
-        public string Description { get; set; }
-        public int Сost { get; set; }
+        public string Description 
+        {
+            get { return _description; }
+            set { if (string.IsNullOrEmpty(value)) throw new ArgumentException("Description не может быть null или empty"); _description = value; }
+        }
+        public int Cost 
+        {
+            get { return _cost; }
+            set { if (value < 0) throw new ArgumentOutOfRangeException("Cost не может быть отрицательным"); _cost = value; }
+        }
 
-        public Archery(int сost, string description)
+        public Archery(int cost, string description)
         {
             Description = description;
-            Сost = сost;
+            Cost = cost;
         }
 
         public decimal Execute(decimal power)
