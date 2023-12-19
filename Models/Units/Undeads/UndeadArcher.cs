@@ -1,6 +1,6 @@
 ﻿namespace AZZ_LB_3_3
 {
-    public class UndeadArcher : Unit
+    public class UndeadArcher : AbstractUnit
     {
         public UndeadArcher(IUnitStats stats)
         {
