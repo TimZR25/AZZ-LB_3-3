@@ -115,21 +115,8 @@ namespace AZZ_LB_3_3.Main.CombatStageField
                         {
                             UnitsCanTakeAction.Remove(unit); 
                         }
-                        if (UnitsCanTakeAction.Count == 0)
-                        {//умирает последний в очереди
-                            if (RoundManager.Round != 0)
-                            {
-                                ApplyAllPassiveAbilities();
-                            }
 
-                            RoundManager.NextRound();
-
-                            ChangeUnitsCanTakeAction();
-
-                            RebuildQueue();
-                        }
-                       // сделать проверку на смерть самого последнего в очереди invoke
-                        //RebuildQueue();
+                        RebuildQueue();
                         return;
                     }
                 }
