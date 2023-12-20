@@ -78,7 +78,10 @@ namespace AZZ_LB_3_3.Main.CombatStageField
         {
             if (UnitsPriorityQueue.Count == 0)
             {
-                if (RoundManager.Round != 0) { ApplyAllPassiveAbilities(); }
+                if (RoundManager.Round != 0) 
+                {
+                    ApplyAllPassiveAbilities(); 
+                }
 
                 RoundManager.NextRound();
 
@@ -93,26 +96,40 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             ChangeCurrentPlayer();
         }
 
-        public void RemoveDeadUnitFromField(object sender, IUnit eventArgs) {
+        public void RemoveDeadUnitFromField(object sender, IUnit unit) {
             foreach (IPlayer player in Players)
             {
-                if (player.ControlledUnits.Contains(eventArgs))
+                if (player.ControlledUnits.Contains(unit))
                 {
-                    player.ControlledUnits.Remove(eventArgs);
+                    player.ControlledUnits.Remove(unit);
                     if (player.ControlledUnits.Count == 0)
                     {
                         OnPlayerLose.Invoke(this, player);
                         return;
                     }
                     else {
-                        eventArgs.OnDead -= RemoveDeadUnitFromField;
-                        eventArgs.OnDead -= NextTurn;
+                        unit.OnDead -= RemoveDeadUnitFromField;
+                        unit.OnTurnCompleted -= NextTurn;
 
-                        if (UnitsCanTakeAction.Contains(sender)) { UnitsCanTakeAction.Remove(eventArgs); }
-                        //if (UnitsCanTakeAction.Count == 0) {//умирает последний в очереди
-                        //    ChangeUnitsCanTakeAction();
-                        //} сделать проверку на смерть самого последнего в очереди invoke
-                        RebuildQueue();
+                        if (UnitsCanTakeAction.Contains(unit)) 
+                        {
+                            UnitsCanTakeAction.Remove(unit); 
+                        }
+                        if (UnitsCanTakeAction.Count == 0)
+                        {//умирает последний в очереди
+                            if (RoundManager.Round != 0)
+                            {
+                                ApplyAllPassiveAbilities();
+                            }
+
+                            RoundManager.NextRound();
+
+                            ChangeUnitsCanTakeAction();
+
+                            RebuildQueue();
+                        }
+                       // сделать проверку на смерть самого последнего в очереди invoke
+                        //RebuildQueue();
                         return;
                     }
                 }
