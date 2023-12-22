@@ -73,6 +73,17 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             }
         }
 
+        public void GameStarter()
+        {
+            RoundManager.NextRound();
+
+            ChangeUnitsCanTakeAction();
+
+            RebuildQueue();
+
+            CurrentUnit = UnitsPriorityQueue.Dequeue();
+            ChangeCurrentPlayer();
+        }
 
         public void NextTurn(object sender, IUnit args) // запускает сразу(0 раунда)
         {
