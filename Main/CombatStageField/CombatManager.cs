@@ -85,14 +85,11 @@ namespace AZZ_LB_3_3.Main.CombatStageField
             ChangeCurrentPlayer();
         }
 
-        public void NextTurn(object sender, IUnit args) // запускает сразу(0 раунда)
+        public void NextTurn(object sender, IUnit args)
         {
             if (UnitsPriorityQueue.Count == 0)
             {
-                if (RoundManager.Round != 0) 
-                {
-                    ApplyAllPassiveAbilities(); 
-                }
+                ApplyAllPassiveAbilities(); 
 
                 RoundManager.NextRound();
 
